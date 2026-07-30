@@ -1,0 +1,79 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import LocalPhoto from '@/components/LocalPhoto.astro';
+import Notice from '@/components/Notice.astro';
+---
+
+<BaseLayout title="紅葉ともみじ谷" description="弥彦公園もみじ谷の見頃、観月橋、混雑を避ける時間帯、写真撮影、散策のポイントを紹介します。">
+  <PageHero
+    eyebrow="MOMIJI VALLEY"
+    title="朱の橋、紅の谷。"
+    lead="観月橋を包むように色づく、弥彦公園のもみじ谷。例年の見頃、歩く時間、撮影の考え方をまとめました。"
+    image="yahiko-momiji"
+    imageAlt="紅葉に包まれた弥彦公園もみじ谷と朱色の観月橋"
+    status="例年の見頃：11月上旬〜中旬を中心に変動"
+  />
+
+  <section class="bg-paper py-7">
+    <div class="container-shell">
+      <Notice label="見頃について" title="日付ではなく、色づきの進み方で計画を。" body="紅葉は最低気温、雨、強風の影響を受けます。例年の時期は目安です。直前の色づき情報と天候を合わせて判断してください。" tone="season" />
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-14 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
+      <div>
+        <SectionTitle eyebrow="THE VIEW" title="観月橋を、谷の空気ごと見る。" description="もみじ谷の中心に架かる朱色の観月橋は、周囲の紅葉、水辺、起伏のある園路と一体になって景色をつくります。" />
+        <div class="prose-jp mt-8 text-sm leading-8 text-ink/66 sm:text-base">
+          <p>橋だけを目指すより、入口から木立の変化を感じながら近づくと、谷の奥行きがよく伝わります。</p>
+          <p>朝は人が比較的少なく、葉の細部を落ち着いて見やすい時間。夕方から点灯時間帯は、朱色と影の対比が強まります。</p>
+        </div>
+      </div>
+      <LocalPhoto name="yahiko-momiji" alt="もみじ谷を横切る観月橋" caption="弥彦公園・もみじ谷" credit="Tail furry / CC BY-SA 4.0" imageClass="aspect-[4/3]" />
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell">
+      <SectionTitle eyebrow="WHEN TO VISIT" title="時間で変わる、紅葉の表情。" />
+      <div class="mt-12 grid gap-px bg-moss/15 md:grid-cols-3">
+        {[
+          ['朝', '静けさと葉の細部', '開園時間の制限がない公園ですが、暗い時間帯は足元に注意。明るくなってからの早い時間は、落ち着いて歩きやすい傾向です。'],
+          ['昼', '色と水辺の明るさ', '木漏れ日や水面の反射が見えやすい時間。休日の見頃期は混雑しやすいため、撮影では通行を妨げない場所を選びます。'],
+          ['夜', '点灯がつくる奥行き', 'ライトアップ開催日のみ楽しめる景色。三脚の使用可否、通行規制、終了時刻は当年の案内と現地掲示を優先します。'],
+        ].map((item) => (
+          <article class="bg-paper p-7 sm:p-9">
+            <p class="text-xs font-bold tracking-[.2em] text-vermilion">{item[0]}</p>
+            <h2 class="mt-5 text-2xl text-moss">{item[1]}</h2>
+            <p class="mt-5 text-sm leading-8 text-ink/64">{item[2]}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <SectionTitle eyebrow="MANNERS" title="景色を残すための、撮影マナー。" />
+        <ul class="mt-9 grid gap-5 text-sm leading-7 text-ink/68">
+          <li class="flex gap-4"><span class="font-serif-jp text-xl text-gold">一</span><span>橋や園路の中央で長時間立ち止まらず、通行を優先します。</span></li>
+          <li class="flex gap-4"><span class="font-serif-jp text-xl text-gold">二</span><span>植栽内へ入らず、枝や落葉を撮影目的で動かしません。</span></li>
+          <li class="flex gap-4"><span class="font-serif-jp text-xl text-gold">三</span><span>商用・公的目的の撮影は、必要な許可を事前に確認します。</span></li>
+          <li class="flex gap-4"><span class="font-serif-jp text-xl text-gold">四</span><span>夜間は強い光やフラッシュを周囲へ向けず、静かに鑑賞します。</span></li>
+        </ul>
+      </div>
+      <div class="washi-panel p-8 sm:p-10">
+        <p class="text-xs font-bold tracking-[.2em] text-vermilion">QUICK PLAN</p>
+        <h2 class="mt-5 text-2xl text-moss">紅葉だけなら30分、景色を味わうなら60分。</h2>
+        <p class="mt-5 text-sm leading-8 text-ink/64">弥彦駅側からもみじ谷・観月橋を往復する短い散策に、渓流・トンネル・休憩時間を加えると、約60分が目安です。混雑期はさらに余裕を持ちます。</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/walking-course/" class="btn-primary">散策コース</a>
+          <a href="/light-up/" class="btn-secondary">夜間点灯</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

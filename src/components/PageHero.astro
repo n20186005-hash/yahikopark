@@ -1,0 +1,33 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  image?: 'yahiko-momiji' | 'yahiko-snow' | 'yahiko-station-sakura' | 'yahiko-street';
+  imageAlt?: string;
+  status?: string;
+}
+const { eyebrow, title, lead, image = 'yahiko-momiji', imageAlt = '弥彦公園の風景', status } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-moss text-paper">
+  <div class="absolute inset-0">
+    <picture>
+      <source type="image/webp" srcset={`/images/${image}-640.webp 640w, /images/${image}-960.webp 960w, /images/${image}-1280.webp 1280w`} sizes="100vw" />
+      <img src={`/images/${image}-1280.webp`} alt={imageAlt} class="h-full w-full object-cover opacity-38" width="1280" height="960" loading="eager" fetchpriority="high" />
+    </picture>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,29,19,.92)_0%,rgba(16,29,19,.68)_55%,rgba(16,29,19,.28)_100%)]"></div>
+  </div>
+  <div class="container-shell relative flex min-h-[480px] items-end py-16 sm:min-h-[580px] sm:py-24">
+    <div class="max-w-3xl">
+      <p class="text-xs font-bold tracking-[.24em] text-gold">{eyebrow}</p>
+      <h1 class="mt-5 text-[clamp(2.6rem,8vw,6rem)] leading-[1.18] text-paper">{title}</h1>
+      <p class="mt-7 max-w-2xl text-sm leading-8 text-paper/78 sm:text-base">{lead}</p>
+      {status && (
+        <div class="mt-8 inline-flex items-center gap-3 rounded-full border border-paper/20 bg-paper/10 px-4 py-2 text-xs tracking-[.08em] backdrop-blur-md">
+          <span class="size-2 rounded-full bg-gold"></span>{status}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

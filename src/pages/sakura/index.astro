@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import LocalPhoto from '@/components/LocalPhoto.astro';
+---
+
+<BaseLayout title="桜と春の散歩" description="弥彦公園のソメイヨシノ、八重桜、里桜の時期と、春の散歩・撮影・服装のポイントを紹介します。">
+  <PageHero
+    eyebrow="SPRING IN YAHIKO"
+    title="桜を追わず、余韻を歩く。"
+    lead="ソメイヨシノから八重桜、里桜へ。弥彦の春は、ひとつの満開だけで終わらないのが魅力です。"
+    image="yahiko-station-sakura"
+    imageAlt="春の桜に彩られたJR弥彦駅"
+    status="春の目安：4月上旬〜5月上旬｜写真は弥彦駅周辺"
+  />
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid items-center gap-14 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+      <LocalPhoto name="yahiko-station-sakura" alt="桜の咲くJR弥彦駅" caption="弥彦駅周辺の春景色（公園内ではありません）" credit="Drph17 / CC BY-SA 4.0" imageClass="aspect-[4/3]" />
+      <div>
+        <SectionTitle eyebrow="LONG SPRING" title="咲く順番が、散歩の景色を変える。" description="弥彦公園では4月のソメイヨシノに続き、八重桜や里桜が見頃を迎えます。年によって前後しますが、異なる品種が春の時間をつないでいきます。" />
+        <p class="mt-8 text-sm leading-8 text-ink/66 sm:text-base">満開日だけを狙うより、つぼみ、咲き始め、花吹雪、新緑まで含めて歩くと、公園の水辺や橋との組み合わせを楽しみやすくなります。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell">
+      <SectionTitle eyebrow="SPRING NOTES" title="春の計画、三つの視点。" />
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {[
+          ['開花', '標高や日当たり、品種によって園内でも進み方が違います。最新の開花情報を見て、ひとつの場所に絞りすぎない計画を。'],
+          ['時間', '朝は静かで空気が澄み、午後は花と水辺が明るく見えます。休日は駅から近い利点を生かし、列車利用も検討します。'],
+          ['服装', '春の弥彦は日中と朝夕で体感が変わります。薄手の上着と、起伏に対応できる歩きやすい靴が安心です。'],
+        ].map((item, i) => (
+          <article class="border-t border-moss/20 pt-7">
+            <span class="font-serif-jp text-4xl text-gold">0{i + 1}</span>
+            <h2 class="mt-6 text-2xl text-moss">{item[0]}</h2>
+            <p class="mt-4 text-sm leading-8 text-ink/64">{item[1]}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-10 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+      <SectionTitle eyebrow="A QUIET ROUTE" title="駅から始める、春の一時間。" description="弥彦駅の外観と周辺の桜を見たあと、公園へ入り、水辺と橋をつなぐように歩くコースです。" />
+      <ol class="grid gap-0 border-l border-moss/20 pl-7">
+        {[
+          ['弥彦駅', '駅舎と周辺の春景色を見て、公園へ。'],
+          ['公園入口', '混雑状況と園内掲示を確認します。'],
+          ['観月橋・水辺', '橋、桜、新緑の重なりをゆっくり鑑賞。'],
+          ['トンネル周辺', '光の変化を楽しみ、無理のない地点で折り返します。'],
+        ].map((step, i) => (
+          <li class="relative border-b border-moss/12 py-6 first:pt-0">
+            <span class="absolute -left-[2.15rem] top-6 grid size-4 place-items-center rounded-full bg-paper ring-1 ring-moss/35 first:top-0"><span class="size-1.5 rounded-full bg-vermilion"></span></span>
+            <p class="text-xs font-bold tracking-[.14em] text-vermilion">STEP {i + 1}</p>
+            <h2 class="mt-2 text-xl text-moss">{step[0]}</h2>
+            <p class="mt-2 text-sm leading-7 text-ink/62">{step[1]}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+</BaseLayout>

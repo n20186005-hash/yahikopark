@@ -1,0 +1,81 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Notice from '@/components/Notice.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+---
+
+<BaseLayout title="紅葉ライトアップ" description="弥彦公園もみじ谷の紅葉ライトアップについて、2026年の発表状況、例年の目安、夜間散策の注意点を案内します。">
+  <PageHero
+    eyebrow="AUTUMN LIGHT-UP"
+    title="夜に浮かぶ、朱と紅。"
+    lead="もみじ谷と観月橋が光に包まれる秋の夜。開催状況、時間、足元、混雑を確認してから出かけましょう。"
+    image="yahiko-momiji"
+    imageAlt="弥彦公園もみじ谷の紅葉と観月橋"
+    status="2026年日程：未発表"
+  />
+
+  <section class="bg-paper py-7">
+    <div class="container-shell">
+      <Notice
+        label="2026年情報"
+        title="開催日・点灯時間・交通規制は、正式発表後に掲載します。"
+        body="現時点では2026年秋の公式日程を確認できていません。過年度の開催日は参考にとどめ、今年の情報として流用していません。"
+        tone="season"
+      />
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+      <SectionTitle eyebrow="TYPICAL SEASON" title="例年は、紅葉の時期に合わせて。" description="過年度の観光案内では、10月下旬頃から紅葉の終盤まで、夕方から夜に点灯する形が一般的でした。年ごとに日程・終了時刻・運用が変わるため、下記は計画のための目安です。" />
+      <div class="grid gap-px bg-moss/15 sm:grid-cols-3">
+        {[
+          ['時期の目安', '10月下旬〜紅葉終盤'],
+          ['時間の目安', '夕方〜21時頃'],
+          ['必ず確認', '当年の日程・駐車場'],
+        ].map((item) => (
+          <div class="bg-washi/70 p-7 sm:p-8">
+            <p class="text-xs font-bold tracking-[.14em] text-vermilion">{item[0]}</p>
+            <p class="mt-4 font-serif-jp text-xl leading-relaxed text-moss">{item[1]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-moss text-paper">
+    <div class="container-shell">
+      <SectionTitle eyebrow="NIGHT WALK" title="夜の公園を、静かに安全に。" description="照明がある範囲でも、園路の起伏、濡れた落葉、暗い区間があります。景色に集中できるよう、足元と帰路を先に整えます。" />
+      <div class="mt-12 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          ['靴', '滑りにくく、暗い園路でも歩きやすい靴を選びます。'],
+          ['灯り', '小型ライトは足元向けに。鑑賞者や撮影へ直接向けません。'],
+          ['帰路', '列車時刻、駐車場の閉鎖、交通規制を入園前に確認します。'],
+          ['撮影', '三脚や長時間撮影は現地ルールと通行を最優先します。'],
+        ].map((item, i) => (
+          <article class="border-t border-paper/20 pt-6">
+            <p class="font-serif-jp text-3xl text-gold">0{i + 1}</p>
+            <h2 class="mt-5 text-xl text-paper">{item[0]}</h2>
+            <p class="mt-4 text-sm leading-7 text-paper/65">{item[1]}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
+      <div>
+        <SectionTitle eyebrow="UPDATE POLICY" title="このページの更新方針。" />
+        <p class="mt-7 text-sm leading-8 text-ink/66 sm:text-base">正式発表を確認できた時点で、開催期間、点灯時間、雨天時の扱い、臨時駐車場、交通規制を分けて掲載します。未確認情報は断定しません。</p>
+      </div>
+      <div class="washi-panel p-8 sm:p-10">
+        <p class="text-xs font-bold tracking-[.2em] text-vermilion">BEFORE LEAVING</p>
+        <h2 class="mt-5 text-2xl text-moss">日程だけでなく、帰りの手段まで。</h2>
+        <p class="mt-5 text-sm leading-8 text-ink/64">ライトアップ終了時刻と最終列車・駐車場運用は別の情報です。夜の訪問では、先にアクセスと駐車場ページを確認してください。</p>
+        <div class="mt-8 flex flex-wrap gap-3"><a class="btn-primary" href="/access/">アクセス</a><a class="btn-secondary" href="/parking/">駐車場</a></div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

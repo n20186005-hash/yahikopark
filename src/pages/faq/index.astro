@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+const faqs = [
+  ['入園料はかかりますか？', '弥彦公園の入園は無料です。紅葉期の周辺駐車場は有料運用になる場合があります。'],
+  ['何時から何時まで入れますか？', '公園は終日開放と案内されています。ただし夜間は暗い区間があり、ライトアップも開催期間・点灯時間が決まっています。'],
+  ['弥彦駅からどのくらいですか？', 'JR弥彦線・弥彦駅から公園入口まで徒歩約1分です。'],
+  ['見学には何分必要ですか？', '観月橋中心なら約30分、渓流やトンネルを含めるなら約60分、公園をゆっくり巡るなら約90分が目安です。混雑や撮影時間は別に見込んでください。'],
+  ['紅葉の見頃はいつですか？', '例年は11月上旬〜中旬が中心ですが、気温・雨・強風で前後します。直前の色づき情報を確認してください。'],
+  ['2026年のライトアップはいつですか？', '現時点では正式日程を確認できていません。発表後にライトアップページを更新します。'],
+  ['ベビーカーや車いすで歩けますか？', '公園には起伏、坂、階段、橋があります。利用できる範囲は季節や路面状況でも変わるため、現地案内を確認し、無理のないルートを選んでください。'],
+  ['犬を連れて行けますか？', '現地の掲示と最新の管理ルールを優先し、リード、排泄物の持ち帰り、混雑時の配慮など基本マナーを守ってください。'],
+  ['雨の日でも楽しめますか？', '濡れた木々や水辺には魅力がありますが、落葉、石、坂は滑りやすくなります。強い雨や風では無理をしないでください。'],
+  ['商用撮影はできますか？', '商用・公的目的の撮影は、事前に許可が必要となる場合があります。撮影内容に応じて管理側へ確認してください。'],
+];
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
+---
+
+<BaseLayout title="よくある質問" description="弥彦公園の料金、開園時間、所要時間、紅葉、ライトアップ、ペット、車いす、雨天、撮影について回答します。" structuredData={faqSchema}>
+  <PageHero eyebrow="FREQUENTLY ASKED QUESTIONS" title="出発前の、よくある質問。" lead="料金、時間、見頃、歩き方。迷いやすい情報を、現在確認できる範囲で整理しました。" image="yahiko-street" imageAlt="弥彦の町並みと外苑坂通り" />
+  <section class="section-space bg-paper">
+    <div class="container-shell max-w-4xl">
+      <div class="grid gap-3">
+        {faqs.map(([question, answer], index) => (
+          <details class="group border border-moss/15 bg-paper open:bg-washi/55">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-5 px-5 py-5 sm:px-7 sm:py-6">
+              <span class="flex gap-4"><span class="font-serif-jp text-xl text-gold">{String(index + 1).padStart(2, '0')}</span><span class="font-bold tracking-[.04em] text-moss">{question}</span></span>
+              <span class="grid size-8 shrink-0 place-items-center rounded-full border border-moss/20 text-moss transition-transform group-open:rotate-45" aria-hidden="true">＋</span>
+            </summary>
+            <div class="px-5 pb-6 pl-[4.25rem] text-sm leading-8 text-ink/65 sm:px-7 sm:pb-7 sm:pl-[5.2rem]">{answer}</div>
+          </details>
+        ))}
+      </div>
+      <div class="mt-12 border-t border-moss/15 pt-8 text-sm leading-8 text-ink/58"><p>掲載内容は情報確認日時点のものです。季節イベント、駐車場、交通規制、園内ルールは現地の最新案内を優先してください。</p></div>
+    </div>
+  </section>
+</BaseLayout>

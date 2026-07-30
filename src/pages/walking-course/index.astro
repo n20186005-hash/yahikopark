@@ -1,0 +1,60 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import LocalPhoto from '@/components/LocalPhoto.astro';
+---
+
+<BaseLayout title="散策コース" description="弥彦公園を30分・60分・90分で歩く三つのモデルコースと、起伏、写真、休憩の考え方を紹介します。">
+  <PageHero
+    eyebrow="WALKING COURSES"
+    title="歩く時間を、先に決める。"
+    lead="乗り継ぎの合間の30分から、季節を丁寧に味わう90分まで。目的と体力に合わせた三つのモデルコースです。"
+    image="yahiko-momiji"
+    imageAlt="弥彦公園もみじ谷の散策風景"
+    status="園内には坂・階段・濡れやすい場所があります"
+  />
+
+  <section class="section-space bg-paper">
+    <div class="container-shell">
+      <SectionTitle eyebrow="COURSE 01" title="30分｜観月橋ショート" description="弥彦駅側の入口から、もみじ谷と観月橋を中心に往復する短い散策です。混雑や撮影時間は含めず、余裕を持って計画します。" />
+      <div class="mt-10 grid gap-8 lg:grid-cols-[1.25fr_.75fr]">
+        <div class="washi-panel p-7 sm:p-10">
+          <div class="flex flex-wrap items-center gap-3 text-xs font-bold tracking-[.1em] text-moss"><span class="rounded-full bg-moss px-3 py-1 text-paper">START</span><span>弥彦駅側入口</span><span class="text-gold">→</span><span>もみじ谷</span><span class="text-gold">→</span><span>観月橋</span><span class="text-gold">→</span><span>折り返し</span></div>
+          <p class="mt-7 text-sm leading-8 text-ink/64">「代表的な景色を見たい」「列車の待ち時間に歩きたい」という人向け。秋の見頃や休日は、橋周辺だけで予定以上に時間がかかります。</p>
+        </div>
+        <div class="border-t border-moss/20 pt-6"><p class="text-xs font-bold tracking-[.15em] text-vermilion">向いている人</p><p class="mt-4 text-sm leading-8 text-ink/64">初訪問、短時間滞在、歩行距離を抑えたい人。暗い時間帯や積雪時は短縮してください。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <LocalPhoto name="yahiko-momiji" alt="弥彦公園の観月橋と紅葉" caption="観月橋周辺は季節・時間帯で混雑します" credit="Tail furry / CC BY-SA 4.0" imageClass="aspect-[4/3]" />
+      <div>
+        <SectionTitle eyebrow="COURSE 02" title="60分｜水音とトンネル" description="観月橋から渓流、滝、トンネル周辺へ。弥彦公園らしい高低差と、光の変化を感じる基本コースです。" />
+        <ul class="mt-8 grid gap-4 text-sm leading-7 text-ink/65"><li>・写真撮影を含めるなら、最も使いやすい時間配分</li><li>・濡れた路面、落葉、階段では速度を落とす</li><li>・帰りの列車や点灯終了時刻から逆算する</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-12 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+      <SectionTitle eyebrow="COURSE 03" title="90分｜四季の公園一周" description="水辺、橋、トンネル、木立、休憩をつなぎ、公園の表情をゆっくり味わうコース。見頃の撮影や家族での散歩には、さらに余裕を。" />
+      <div class="grid gap-px bg-moss/15 sm:grid-cols-3">
+        {[
+          ['前半', '入口〜もみじ谷', '人の流れと掲示を見ながら、代表景観へ。'],
+          ['中盤', '水辺〜トンネル', '足元に注意し、光と音の変化を楽しみます。'],
+          ['後半', '木立〜出口', '疲れ具合に応じて短縮し、駅や駐車場へ戻ります。'],
+        ].map((item) => <article class="bg-washi/60 p-7"><p class="text-xs font-bold tracking-[.14em] text-vermilion">{item[0]}</p><h2 class="mt-4 text-xl text-moss">{item[1]}</h2><p class="mt-4 text-sm leading-7 text-ink/62">{item[2]}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-moss text-paper">
+    <div class="container-shell grid lg:grid-cols-2">
+      <LocalPhoto name="yahiko-snow" alt="雪に包まれた冬の弥彦公園" caption="冬の弥彦公園" credit="Hiroaki Kaneko / CC BY-SA 3.0" class="min-h-[420px]" imageClass="min-h-[420px] aspect-[4/3] lg:aspect-auto" />
+      <div class="flex items-center py-16 lg:px-16 lg:py-24"><div><p class="text-xs font-bold tracking-[.2em] text-gold">WINTER NOTE</p><h2 class="mt-5 text-3xl leading-relaxed text-paper sm:text-4xl">雪の日は、予定より短く。</h2><p class="mt-6 text-sm leading-8 text-paper/68">積雪や凍結では、通常のコース時間は当てになりません。歩ける範囲を現地で判断し、橋や坂、日陰の路面では特に慎重に。</p></div></div>
+    </div>
+  </section>
+</BaseLayout>

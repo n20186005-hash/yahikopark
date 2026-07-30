@@ -1,0 +1,98 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import LocalPhoto from '@/components/LocalPhoto.astro';
+import { site } from '@/data/site';
+const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${site.coordinates.latitude},${site.coordinates.longitude}`;
+---
+
+<BaseLayout title="アクセス" description="弥彦公園への電車・車でのアクセス、住所、弥彦駅からの歩き方、移動時の注意点を案内します。">
+  <PageHero
+    eyebrow="ACCESS"
+    title="列車を降りて、一分。"
+    lead="JR弥彦線・弥彦駅のすぐそば。公共交通でも車でも、最後の移動をわかりやすく整理します。"
+    image="yahiko-station-sakura"
+    imageAlt="JR弥彦駅の駅舎と春の桜"
+    status="JR弥彦駅から徒歩約1分"
+  />
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+      <SectionTitle eyebrow="BY TRAIN" title="電車なら、弥彦駅が旅の入口。" description="JR弥彦線の終着・弥彦駅から、公園入口までは徒歩約1分です。乗り継ぎ時刻は利用日ごとに確認してください。" />
+      <div class="washi-panel p-7 sm:p-10">
+        <div class="grid items-center gap-4 sm:grid-cols-[1fr_auto_1fr_auto_1fr]">
+          <div class="text-center"><p class="text-xs font-bold tracking-[.15em] text-ink/46">新幹線方面</p><p class="mt-2 font-serif-jp text-xl text-moss">燕三条</p></div>
+          <span class="text-center text-gold" aria-hidden="true">→</span>
+          <div class="text-center"><p class="text-xs font-bold tracking-[.15em] text-ink/46">乗り継ぎ</p><p class="mt-2 font-serif-jp text-xl text-moss">吉田方面</p></div>
+          <span class="text-center text-gold" aria-hidden="true">→</span>
+          <div class="text-center"><p class="text-xs font-bold tracking-[.15em] text-ink/46">最寄り駅</p><p class="mt-2 font-serif-jp text-xl text-vermilion">弥彦</p></div>
+        </div>
+        <p class="mt-8 border-t border-moss/15 pt-6 text-sm leading-8 text-ink/62">運行本数や接続は時間帯・季節で変わります。ライトアップ後に列車を利用する場合は、往路で帰りの時刻を確認しておくと安心です。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <LocalPhoto name="yahiko-street" alt="弥彦駅から彌彦神社方面へ続く外苑坂通り" caption="弥彦駅から彌彦神社方面へ続く外苑坂通り" credit="Drph17 / CC BY-SA 4.0" imageClass="aspect-[4/3]" />
+      <div>
+        <SectionTitle eyebrow="ON FOOT" title="駅前から、公園へ。" description="弥彦駅を出たら、公園はすぐ近くです。初めての場合は入口の案内板で現在地と園路を確認し、観月橋方面へ進みます。" />
+        <ol class="mt-8 grid gap-4 text-sm leading-7 text-ink/66">
+          <li class="flex gap-4"><span class="grid size-8 shrink-0 place-items-center rounded-full bg-moss text-xs text-paper">1</span><span>弥彦駅の改札を出て、駅前の案内を確認。</span></li>
+          <li class="flex gap-4"><span class="grid size-8 shrink-0 place-items-center rounded-full bg-moss text-xs text-paper">2</span><span>公園入口へ徒歩約1分。季節の掲示を確認。</span></li>
+          <li class="flex gap-4"><span class="grid size-8 shrink-0 place-items-center rounded-full bg-moss text-xs text-paper">3</span><span>もみじ谷・観月橋、または希望する散策コースへ。</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-12 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+      <SectionTitle eyebrow="BY CAR" title="車では三条燕ICから約25分。" description="紅葉や大型イベントの時期は、通常より長くかかる場合があります。園内付近で駐車場を探すより、事前に運用を確認してから向かうのが安心です。" />
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="washi-panel p-7"><p class="text-xs font-bold tracking-[.14em] text-vermilion">高速道路</p><p class="mt-4 font-serif-jp text-2xl text-moss">北陸自動車道<br />三条燕IC</p><p class="mt-4 text-sm leading-7 text-ink/62">通常時の目安：約25分</p></div>
+        <div class="washi-panel p-7"><p class="text-xs font-bold tracking-[.14em] text-vermilion">住所</p><p id="park-address" class="mt-4 text-sm font-bold leading-8 text-moss">{site.address}</p><button id="copy-address" type="button" class="btn-secondary mt-5 !min-h-10 !text-xs">住所をコピー</button><p id="copy-result" class="mt-3 min-h-5 text-xs text-ink/50" aria-live="polite"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-moss py-14 text-paper">
+    <div class="container-shell grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
+      <div>
+        <p class="text-xs font-bold tracking-[.18em] text-gold">MAP</p>
+        <h2 class="mt-3 text-2xl text-paper">現在地から経路を確認</h2>
+        <p class="mt-3 text-sm leading-7 text-paper/60">地図で弥彦公園の位置を確認できます。経路を開くと、Google マップが現在地からのルートを案内します。</p>
+        <a class="btn-primary mt-7 !bg-paper !text-moss hover:!bg-washi" href={mapsUrl} target="_blank" rel="noopener noreferrer">現在地からの経路を開く <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="aspect-[4/3] min-h-[340px] overflow-hidden bg-paper sm:aspect-[16/10] lg:aspect-[16/9]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3156.860090712683!2d138.8300798!3d37.6994847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5ff4ef7cf9b97d0f%3A0x97601ebd7c99f0b9!2sYahiko%20Park!5e0!3m2!1sja!2sjp!4v1785395450324!5m2!1sja!2sjp"
+          title="弥彦公園のGoogleマップ"
+          width="600"
+          height="450"
+          class="size-full"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    const copyButton = document.getElementById('copy-address');
+    const address = document.getElementById('park-address')?.textContent?.trim();
+    const result = document.getElementById('copy-result');
+    copyButton?.addEventListener('click', async () => {
+      if (!address) return;
+      try {
+        await navigator.clipboard.writeText(address);
+        if (result) result.textContent = '住所をコピーしました。';
+      } catch {
+        if (result) result.textContent = 'コピーできませんでした。住所を選択してコピーしてください。';
+      }
+    });
+  </script>
+</BaseLayout>

@@ -1,0 +1,186 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LocalPhoto from '@/components/LocalPhoto.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+import Notice from '@/components/Notice.astro';
+import { facts, seasons } from '@/data/site';
+---
+
+<BaseLayout
+  title="弥彦公園ガイド｜紅葉・桜・ライトアップ・駐車場・アクセス"
+  description="弥彦公園の紅葉、桜、ライトアップ、アクセス、駐車場、散策コースを、季節ごとにわかりやすく紹介します。"
+>
+  <section class="relative min-h-[720px] overflow-hidden bg-moss text-paper sm:min-h-[780px]">
+    <div class="absolute inset-0">
+      <picture>
+        <source type="image/webp" srcset="/images/yahiko-momiji-640.webp 640w, /images/yahiko-momiji-960.webp 960w, /images/yahiko-momiji-1280.webp 1280w" sizes="100vw" />
+        <img src="/images/yahiko-momiji-1280.webp" width="1280" height="960" alt="秋色に包まれた弥彦公園もみじ谷と観月橋" class="h-full w-full object-cover object-center" loading="eager" fetchpriority="high" />
+      </picture>
+      <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,27,17,.86)_0%,rgba(12,27,17,.48)_50%,rgba(12,27,17,.18)_100%)]"></div>
+      <div class="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(0deg,rgba(12,27,17,.7),transparent)]"></div>
+    </div>
+
+    <div class="container-shell relative flex min-h-[720px] flex-col justify-end pb-16 pt-32 sm:min-h-[780px] sm:pb-20">
+      <div class="max-w-4xl">
+        <p class="text-xs font-bold tracking-[.25em] text-gold">YAHIKO PARK · NIIGATA</p>
+        <h1 class="mt-6 text-[clamp(3.2rem,10vw,8.5rem)] leading-[1.02] tracking-[.08em] text-paper">
+          <span class="mb-5 block text-[.34em] tracking-[.2em] text-gold">弥彦公園</span>
+          駅から一分、<br /><span class="text-[.72em]">四季を歩く。</span>
+        </h1>
+        <p class="mt-8 max-w-xl text-sm leading-8 text-paper/80 sm:text-base">
+          朱い観月橋、静かな水音、桜から紅葉へ。弥彦公園で過ごす時間を、季節・歩き方・交通から整える旅のガイドです。
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a class="btn-primary !bg-paper !text-moss hover:!bg-washi" href="/walking-course/">散策コースを見る <span aria-hidden="true">→</span></a>
+          <a class="btn-secondary !border-paper/35 !bg-paper/10 !text-paper hover:!bg-paper/20" href="/access/">アクセスを確認</a>
+        </div>
+      </div>
+
+      <div class="mt-14 grid max-w-3xl grid-cols-2 border-y border-paper/20 sm:grid-cols-4">
+        {facts.map((fact) => (
+          <div class="border-paper/20 px-3 py-5 text-center even:border-l sm:border-l sm:first:border-l-0">
+            <p class="text-[.65rem] font-bold tracking-[.15em] text-paper/52">{fact.label}</p>
+            <p class="mt-1 font-serif-jp text-base tracking-[.08em] text-paper sm:text-lg">{fact.value}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper py-7">
+    <div class="container-shell">
+      <Notice
+        label="2026 AUTUMN"
+        title="2026年の紅葉ライトアップ日程は、まだ発表されていません。"
+        body="開催日、点灯時間、臨時駐車場は正式案内の公開後に更新します。過年度の日程を2026年情報として掲載していません。"
+        tone="season"
+      />
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid items-center gap-12 lg:grid-cols-[.85fr_1.15fr] lg:gap-20">
+      <div class="order-2 lg:order-1">
+        <SectionTitle
+          eyebrow="ABOUT THE PARK"
+          title="暮らしのそばにある、四万坪の庭。"
+          description="弥彦公園は、弥彦駅のすぐそばに広がる約13万平方メートルの公園です。1918年頃に越後鉄道が整備し、現在は彌彦神社の外苑として親しまれています。"
+        />
+        <div class="prose-jp mt-8 text-sm leading-8 text-ink/68 sm:text-base">
+          <p>渓流、滝、トンネル、橋、起伏のある小径がつながり、短い滞在でも季節の奥行きを感じられます。</p>
+          <p>最も知られるのは秋の<strong>もみじ谷と観月橋</strong>。春は桜、初夏は新緑と水辺、冬は雪景色へ表情を変えます。</p>
+        </div>
+        <a class="btn-secondary mt-9" href="/walking-course/">公園の歩き方 <span aria-hidden="true">→</span></a>
+      </div>
+      <LocalPhoto
+        name="yahiko-momiji"
+        alt="紅葉に囲まれた弥彦公園の観月橋"
+        caption="弥彦公園・もみじ谷"
+        credit="Tail furry / CC BY-SA 4.0"
+        class="order-1 lg:order-2"
+        imageClass="aspect-[4/5]"
+        objectPosition="52% 50%"
+      />
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell">
+      <SectionTitle
+        eyebrow="FOUR SEASONS"
+        title="季節を選ぶ、旅を整える。"
+        description="開花や色づきは、その年の気温・雨・風で変わります。下記は例年の目安として、直前には最新情報を確認してください。"
+      />
+      <div class="mt-14 grid border-y border-moss/15 md:grid-cols-2 xl:grid-cols-4">
+        {seasons.map((item, index) => (
+          <a href={item.href} class:list={[
+            'group block px-1 py-9 no-underline sm:px-7 xl:py-12',
+            index > 0 && 'border-moss/15 xl:border-l',
+            index === 1 && 'md:border-l',
+            index >= 2 && 'border-t md:border-t',
+            index === 2 && 'xl:border-t-0',
+            index === 3 && 'md:border-l xl:border-t-0',
+          ]}>
+            <div class="flex items-baseline justify-between">
+              <span class="font-serif-jp text-4xl text-gold/80">{item.number}</span>
+              <span class="text-xs font-bold tracking-[.2em] text-vermilion">{item.season}</span>
+            </div>
+            <h3 class="mt-10 text-2xl leading-relaxed text-moss transition-transform group-hover:translate-x-1">{item.title}</h3>
+            <p class="mt-4 text-xs font-bold tracking-[.05em] text-ink/54">{item.period}</p>
+            <p class="mt-5 text-sm leading-7 text-ink/64">{item.description}</p>
+            <span class="mt-8 inline-flex items-center gap-3 text-xs font-bold tracking-[.12em] text-moss">詳しく見る <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell">
+      <div class="grid gap-10 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+        <SectionTitle
+          eyebrow="THREE WAYS TO WALK"
+          title="時間で選ぶ、三つの散策。"
+          description="園内は起伏があります。写真撮影や混雑を考える場合は、表示時間に余裕を持たせてください。"
+        />
+        <div class="grid gap-4">
+          {[
+            ['30分', '観月橋ショート', '弥彦駅側の入口から、もみじ谷・観月橋を中心に往復。乗り継ぎの合間にも。'],
+            ['60分', '水音とトンネル', '観月橋に加え、渓流、滝、トンネル周辺をゆっくり歩く基本コース。'],
+            ['90分', '四季の公園一周', '園内の高低差を楽しみながら、写真と休憩を含めて丁寧に巡ります。'],
+          ].map((route) => (
+            <a href="/walking-course/" class="group grid gap-4 border-b border-moss/16 px-2 py-7 no-underline sm:grid-cols-[100px_1fr_auto] sm:items-center">
+              <span class="font-serif-jp text-3xl text-vermilion">{route[0]}</span>
+              <span>
+                <strong class="block font-serif-jp text-xl font-medium tracking-[.08em] text-moss">{route[1]}</strong>
+                <span class="mt-2 block text-sm leading-7 text-ink/62">{route[2]}</span>
+              </span>
+              <span class="hidden text-xl text-moss transition-transform group-hover:translate-x-2 sm:block" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-moss text-paper">
+    <div class="container-shell grid lg:grid-cols-2">
+      <LocalPhoto
+        name="yahiko-station-sakura"
+        alt="桜の季節のJR弥彦駅"
+        caption="弥彦駅周辺の春景色（公園内ではありません）"
+        credit="Drph17 / CC BY-SA 4.0"
+        class="min-h-[420px]"
+        imageClass="min-h-[420px] aspect-[4/3] lg:aspect-auto"
+        objectPosition="50% 48%"
+      />
+      <div class="flex items-center py-16 lg:px-16 lg:py-24">
+        <div>
+          <p class="text-xs font-bold tracking-[.22em] text-gold">ACCESS</p>
+          <h2 class="mt-5 text-[clamp(2.1rem,5vw,4rem)] leading-[1.35]">列車を降りて、<br />すぐに季節の中へ。</h2>
+          <p class="mt-7 max-w-xl text-sm leading-8 text-paper/70 sm:text-base">
+            JR弥彦線・弥彦駅から公園入口までは徒歩約1分。車では北陸自動車道・三条燕ICから約25分が目安です。
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a class="btn-primary !bg-paper !text-moss hover:!bg-washi" href="/access/">交通案内を見る</a>
+            <a class="btn-secondary !border-paper/30 !bg-transparent !text-paper hover:!bg-paper/10" href="/parking/">駐車場案内</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell text-center">
+      <p class="eyebrow justify-center before:hidden">BEFORE YOU GO</p>
+      <h2 class="mx-auto mt-5 max-w-4xl text-[clamp(2.2rem,6vw,5rem)] leading-[1.3] text-moss">静かな時間のために、<br />出発前の三分を。</h2>
+      <p class="mx-auto mt-7 max-w-2xl text-sm leading-8 text-ink/64 sm:text-base">
+        見頃、ライトアップ、駐車場の運用は季節ごとに変わります。最新の現地案内を確認し、歩きやすい靴と余裕のある行程でお出かけください。
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a class="btn-primary" href="/faq/">よくある質問</a>
+        <a class="btn-secondary" href="/light-up/">ライトアップ情報</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

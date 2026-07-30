@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Notice from '@/components/Notice.astro';
+import SectionTitle from '@/components/SectionTitle.astro';
+---
+
+<BaseLayout title="駐車場と混雑" description="弥彦公園周辺の駐車場、紅葉期の有料運用、混雑回避、到着前に確認したい項目を案内します。">
+  <PageHero
+    eyebrow="PARKING & TRAFFIC"
+    title="停める場所まで、旅の計画。"
+    lead="通常時と紅葉期では、駐車場の運用や道路の混み方が変わります。到着してから探すのではなく、出発前に確認を。"
+    image="yahiko-street"
+    imageAlt="弥彦駅から彌彦神社方面へ続く町並み"
+    status="2026年秋の臨時駐車場・料金：未発表"
+  />
+
+  <section class="bg-paper py-7">
+    <div class="container-shell"><Notice label="重要" title="紅葉期は、駐車場が有料運用になる場合があります。" body="対象駐車場、料金、期間、交通規制は年ごとに変わります。2026年の運用は正式発表後に更新します。" tone="season" /></div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-14 lg:grid-cols-[.75fr_1.25fr] lg:gap-20">
+      <SectionTitle eyebrow="CAPACITY" title="周辺案内の目安は、普通車約2,000台。" description="観光案内上、弥彦公園周辺には普通車約2,000台分の駐車場が案内されています。ただし、すべてが常時同条件で利用できるとは限りません。" />
+      <div class="grid gap-4 sm:grid-cols-3">
+        {[
+          ['通常期', '比較的選択肢を見つけやすい時期でも、催事や週末は状況が変わります。'],
+          ['紅葉期', '有料化、臨時運用、満車、周辺道路の渋滞を前提に時間を確保します。'],
+          ['夜間', 'ライトアップ終了より早く閉鎖する場所がないか、入庫時に確認します。'],
+        ].map((item) => <article class="washi-panel p-7"><h2 class="text-xl text-moss">{item[0]}</h2><p class="mt-4 text-sm leading-7 text-ink/62">{item[1]}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell">
+      <SectionTitle eyebrow="ARRIVAL STRATEGY" title="混雑日に、迷わないための順番。" />
+      <div class="mt-12 grid gap-px bg-moss/15 md:grid-cols-4">
+        {[
+          ['01', '運用を確認', '当年の料金、臨時駐車場、交通規制を出発前に。'],
+          ['02', '早めに到着', '紅葉の休日は、通常の所要時間で考えないようにします。'],
+          ['03', '満車時を想定', '入口付近に固執せず、案内員と標識に従います。'],
+          ['04', '帰路を確認', 'ライトアップ後は出庫集中と暗い道路に注意します。'],
+        ].map((item) => <article class="bg-paper p-7 sm:p-8"><p class="font-serif-jp text-3xl text-gold">{item[0]}</p><h2 class="mt-5 text-xl text-moss">{item[1]}</h2><p class="mt-4 text-sm leading-7 text-ink/62">{item[2]}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell grid gap-12 lg:grid-cols-2 lg:gap-20">
+      <div><SectionTitle eyebrow="PUBLIC TRANSPORT" title="見頃の休日は、列車も有力な選択。" /><p class="mt-7 text-sm leading-8 text-ink/66 sm:text-base">弥彦駅から公園までは徒歩約1分です。道路混雑や駐車場待ちを避けたい日は、行きと帰りの時刻を確認したうえで列車利用を検討できます。</p><a class="btn-primary mt-8" href="/access/">電車でのアクセス</a></div>
+      <div class="washi-panel p-8 sm:p-10"><p class="text-xs font-bold tracking-[.18em] text-vermilion">CHECKLIST</p><h2 class="mt-5 text-2xl text-moss">出発前に見る四項目</h2><ul class="mt-6 grid gap-4 text-sm leading-7 text-ink/65"><li>□ 当日の駐車場運用</li><li>□ 周辺道路の規制</li><li>□ ライトアップ終了時刻</li><li>□ 帰路の天候と路面</li></ul></div>
+    </div>
+  </section>
+</BaseLayout>

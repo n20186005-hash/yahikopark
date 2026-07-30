@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+const photos = [
+  {
+    title: 'Momiji-dani, Yahiko Park, November 2022',
+    usage: 'もみじ谷・観月橋（トップ、紅葉、散策ページ）',
+    author: 'Tail furry',
+    license: 'CC BY-SA 4.0',
+    source: 'https://commons.wikimedia.org/wiki/File:Momiji-dani,_Yahiko_Park,_Yahiko,_Niigata,_Japan,_November_2022.png',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  },
+  {
+    title: '雪舞う弥彦公園 (Snowy Yahiko Park)',
+    usage: '冬の弥彦公園（散策、プライバシーページ）',
+    author: 'Hiroaki Kaneko',
+    license: 'CC BY-SA 3.0',
+    source: 'https://commons.wikimedia.org/wiki/File:雪舞う弥彦公園_(Snowy_Yahiko_Park)_07_Jan,_2012_-_panoramio.jpg',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+  },
+  {
+    title: 'Yahiko Line Terminal 001 April 2020',
+    usage: '弥彦駅周辺の春景色（トップ、桜、アクセスページ）',
+    author: 'Drph17',
+    license: 'CC BY-SA 4.0',
+    source: 'https://commons.wikimedia.org/wiki/File:Yahiko_Line_Terminal_001_April2020.jpg',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  },
+  {
+    title: 'Yahiko Gaienzaka-dori Street April 2020',
+    usage: '外苑坂通り（アクセス、駐車場、FAQページ）',
+    author: 'Drph17',
+    license: 'CC BY-SA 4.0',
+    source: 'https://commons.wikimedia.org/wiki/File:Yahiko_Gaienzaka-dori_Street_April2020.jpg',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+  },
+];
+---
+
+<BaseLayout title="写真クレジット" description="YahikoPark.comで使用している実写写真の著作者、ライセンス、原典、加工内容を掲載します。">
+  <PageHero eyebrow="PHOTO CREDITS" title="写真と、その背景。" lead="このサイトの実写素材は、出典とライセンスを確認し、ウェブ表示用にローカル保存・最適化しています。" image="yahiko-momiji" imageAlt="弥彦公園もみじ谷と観月橋" />
+  <section class="section-space bg-paper">
+    <div class="container-shell max-w-5xl">
+      <p class="max-w-3xl text-sm leading-8 text-ink/66">下記写真はCreative Commonsライセンスに基づき利用しています。表示速度のため、元画像をリサイズ、トリミング、圧縮しています。原典とライセンスは外部ページで確認できます。</p>
+      <div class="mt-10 grid gap-5">
+        {photos.map((photo, i) => (
+          <article class="washi-panel grid gap-6 p-6 sm:grid-cols-[72px_1fr] sm:p-8">
+            <span class="font-serif-jp text-4xl text-gold">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h2 class="text-xl leading-relaxed text-moss">{photo.title}</h2>
+              <dl class="mt-5 grid gap-3 text-sm leading-7 sm:grid-cols-[100px_1fr]">
+                <dt class="font-bold text-ink/48">使用箇所</dt><dd>{photo.usage}</dd>
+                <dt class="font-bold text-ink/48">著作者</dt><dd>{photo.author}</dd>
+                <dt class="font-bold text-ink/48">ライセンス</dt><dd>{photo.license}</dd>
+              </dl>
+              <div class="mt-6 flex flex-wrap gap-3"><a class="btn-secondary !min-h-10 !text-xs" href={photo.source} target="_blank" rel="noopener noreferrer">原典を見る ↗</a><a class="btn-secondary !min-h-10 !text-xs" href={photo.licenseUrl} target="_blank" rel="noopener noreferrer">利用条件を見る ↗</a></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
