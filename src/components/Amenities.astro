@@ -1,0 +1,78 @@
+---
+import SectionTitle from '@/components/SectionTitle.astro';
+
+// 周辺施設・サービス（タイプ中立の概説）。特定の店名・施設名は挙げず、
+// 「どのような区分の施設があるか」を中立・客観的に案内する（非営利の科普サイトとして）。
+const groups = [
+  {
+    icon: '🚻',
+    title: 'トイレ',
+    body: '公園内の複数地点と駅前に公衆トイレがあります。紅葉期などの混雑時は、入口付近のトイレが特に混みやすいため、散策の合間にすませると安心です。',
+    note: '車いす対応・オストメイト設備の有無は、現地の案内板でご確認ください。',
+  },
+  {
+    icon: '🅿️',
+    title: '駐車場',
+    body: '周辺には普通車約2,000台分が案内されるエリアがあります。通常時と紅葉期では運用や料金が変わり、臨時駐車場や交通規制が設けられることがあります。',
+    note: '詳しい運用と混雑回避は「駐車場」ページで。',
+    href: '/parking/',
+    linkLabel: '駐車場の案内へ',
+  },
+  {
+    icon: '🍡',
+    title: '飲食',
+    body: '駅前から神社参道にかけて、軽食・甘味・休憩所の区分の店舗が並びます。公園内での食事は、ゴミを持ち帰る前提で、指定された場所でお願いします。',
+    note: '営業日・時間は季節や天候で変わります。現地の掲示を優先してください。',
+  },
+  {
+    icon: '🛏️',
+    title: '宿泊',
+    body: '弥彦エリアおよび燕・三条方面には、旅館・ホテル・その他の宿泊施設の区分があります。紅葉ライトアップや連休の時期は早めの予約が一般的です。',
+    note: '周辺市町村の観光協会案内から、条件に合う施設をご自身でご確認ください。',
+  },
+  {
+    icon: '🛍️',
+    title: '買い物',
+    body: '駅前や参道では、土産物・地場産品・日用品の区分の店舗があります。営業時間は店舗により異なります。',
+    note: '現金のみの店舗もあるため、キャッシュレス決済に加え少額の現金があると便利です。',
+  },
+  {
+    icon: '⛽',
+    title: '給油・充電',
+    body: '周辺の幹線道路沿いに、ガソリンスタンドおよび電気自動車（EV）充電設備の区分があります。弥彦村はやや充電拠点が限られる傾向にあるため、長距離利用の場合は出発前の充電計画をおすすめします。',
+    note: '充電設備の形式（CHAdeMO / CCS など）と空き状況は、各運営者の案内でご確認ください。',
+  },
+];
+---
+
+<section class="section-space bg-paper" id="amenities">
+  <div class="container-shell">
+    <SectionTitle
+      eyebrow="FACILITIES & SERVICES"
+      title="周辺の施設・サービス（タイプ別案内）"
+      description="特定の店舗名は挙げず、「どのような区分の施設があるか」を中立的に案内します。最新の営業・所在地は各公式・公的案内を優先してください。"
+    />
+
+    <div class="mt-12 grid gap-px bg-moss/12 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        groups.map((g) => (
+          <article class="bg-paper p-7 sm:p-8">
+            <p class="text-4xl" aria-hidden="true">{g.icon}</p>
+            <h3 class="mt-4 text-xl text-moss">{g.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-ink/64">{g.body}</p>
+            <p class="mt-4 border-t border-moss/12 pt-4 text-xs leading-6 text-ink/52">{g.note}</p>
+            {g.href && (
+              <a class="btn-secondary mt-5 !min-h-10 !text-xs" href={g.href}>
+                {g.linkLabel} <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="mt-8 max-w-3xl text-xs leading-6 text-ink/50">
+      ※ 本サイトは非公式の私設・非営利ガイドです。施設の有無や運用は変動するため、訪問前に現地の最新案内をご確認ください。
+    </p>
+  </div>
+</section>

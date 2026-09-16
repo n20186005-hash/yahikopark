@@ -6,7 +6,7 @@ import LocalPhoto from '@/components/LocalPhoto.astro';
 import Notice from '@/components/Notice.astro';
 ---
 
-<BaseLayout title="紅葉ともみじ谷" description="弥彦公園もみじ谷の見頃、観月橋、混雑を避ける時間帯、写真撮影、散策のポイントを紹介します。">
+<BaseLayout title="弥彦公園 紅葉・もみじ谷｜見頃とライトアップの目安" description="弥彦公園もみじ谷の見頃（例年11月上旬〜中旬）、観月橋、混雑を避ける時間帯、写真撮影、夜のライトアップのポイントを紹介します。">
   <PageHero
     eyebrow="MOMIJI VALLEY"
     title="朱の橋、紅の谷。"
@@ -23,9 +23,20 @@ import Notice from '@/components/Notice.astro';
   </section>
 
   <section class="section-space bg-paper">
+    <div class="container-shell max-w-4xl">
+      <SectionTitle eyebrow="WHEN IS THE PEAK" title="弥彦公園の紅葉 見頃はいつ？" />
+      <div class="prose-jp mt-8 text-sm leading-8 text-ink/68 sm:text-base">
+        <p>例年、<strong>11月上旬〜中旬</strong>を中心に色づきが進みます。ただし正確な見頃は、その年の最低気温、雨、強風で前後します。直前の色づき情報と天候を合わせて判断してください。</p>
+        <p>もみじ谷と観月橋は園内でも早くから賑わう場所です。休日の見頃期は、朝の早い時間か平日を選ぶと、ゆっくり見やすい傾向があります。</p>
+      </div>
+      <a class="btn-secondary mt-8" href="/light-up/">夜のライトアップ情報 <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
     <div class="container-shell grid gap-14 lg:grid-cols-[.9fr_1.1fr] lg:gap-20">
       <div>
-        <SectionTitle eyebrow="THE VIEW" title="観月橋を、谷の空気ごと見る。" description="もみじ谷の中心に架かる朱色の観月橋は、周囲の紅葉、水辺、起伏のある園路と一体になって景色をつくります。" />
+        <SectionTitle eyebrow="THE VIEW" title="観月橋と、もみじ谷の空気を。" description="もみじ谷の中心に架かる朱色の観月橋は、周囲の紅葉、水辺、起伏のある園路と一体になって景色をつくります。" />
         <div class="prose-jp mt-8 text-sm leading-8 text-ink/66 sm:text-base">
           <p>橋だけを目指すより、入口から木立の変化を感じながら近づくと、谷の奥行きがよく伝わります。</p>
           <p>朝は人が比較的少なく、葉の細部を落ち着いて見やすい時間。夕方から点灯時間帯は、朱色と影の対比が強まります。</p>
@@ -73,6 +84,20 @@ import Notice from '@/components/Notice.astro';
           <a href="/walking-course/" class="btn-primary">散策コース</a>
           <a href="/light-up/" class="btn-secondary">夜間点灯</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <LocalPhoto name="yahiko-momiji" alt="点灯されたもみじ谷の観月橋" caption="弥彦公園・もみじ谷（点灯イメージ）" credit="Tail furry / CC BY-SA 4.0" imageClass="aspect-[4/3]" />
+      <div>
+        <SectionTitle eyebrow="NIGHT LIGHT-UP" title="夜のライトアップ（点灯）" />
+        <div class="prose-jp mt-8 text-sm leading-8 text-ink/68 sm:text-base">
+          <p>紅葉期には、もみじ谷と観月橋を照らすライトアップが行われる年があります。日程・点灯時間・交通規制は年ごとに異なり、2026年の正式日程は発表されていません。</p>
+          <p>開催日は混雑が見込まれます。三脚の使用可否や通行規制、終了時刻は、当年の案内と現地掲示を優先してください。</p>
+        </div>
+        <a class="btn-primary mt-8" href="/light-up/">ライトアップ詳細を見る <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>

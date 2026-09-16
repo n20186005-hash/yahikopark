@@ -5,7 +5,7 @@ import Notice from '@/components/Notice.astro';
 import SectionTitle from '@/components/SectionTitle.astro';
 ---
 
-<BaseLayout title="駐車場と混雑" description="弥彦公園周辺の駐車場、紅葉期の有料運用、混雑回避、到着前に確認したい項目を案内します。">
+<BaseLayout title="弥彦公園 駐車場ガイド｜料金目安・混雑状況・周辺案内" description="弥彦公園周辺の駐車場、通常期と紅葉期の運用の違い、混雑回避、到着前に確認したい項目を案内します。">
   <PageHero
     eyebrow="PARKING & TRAFFIC"
     title="停める場所まで、旅の計画。"
@@ -17,6 +17,46 @@ import SectionTitle from '@/components/SectionTitle.astro';
 
   <section class="bg-paper py-7">
     <div class="container-shell"><Notice label="重要" title="紅葉期は、駐車場が有料運用になる場合があります。" body="対象駐車場、料金、期間、交通規制は年ごとに変わります。2026年の運用は正式発表後に更新します。" tone="season" /></div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell max-w-4xl">
+      <SectionTitle eyebrow="PARKING AT A GLANCE" title="駐車場の目安（時期別）" />
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[640px] border-collapse text-sm">
+          <caption class="sr-only">弥彦公園周辺の駐車場運用の目安（時期別）</caption>
+          <thead>
+            <tr class="bg-moss text-paper">
+              <th scope="col" class="px-4 py-3 text-left font-bold">項目</th>
+              <th scope="col" class="px-4 py-3 text-left font-bold">通常期</th>
+              <th scope="col" class="px-4 py-3 text-left font-bold">紅葉期（見頃の休日）</th>
+              <th scope="col" class="px-4 py-3 text-left font-bold">夜間（点灯日）</th>
+            </tr>
+          </thead>
+          <tbody class="text-ink/72">
+            <tr class="border-t border-moss/15">
+              <th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss">運用の目安</th>
+              <td class="px-4 py-4 align-top">無料の場所が中心。選択肢を見つけやすい。</td>
+              <td class="px-4 py-4 align-top">有料化・臨時運用の可能性。当年の発表を確認。</td>
+              <td class="px-4 py-4 align-top">閉鎖が早まる場所がある場合、入庫時に確認。</td>
+            </tr>
+            <tr class="border-t border-moss/15">
+              <th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss">混雑の目安</th>
+              <td class="px-4 py-4 align-top">比較的余裕があることが多い。</td>
+              <td class="px-4 py-4 align-top">満車・周辺渋滞を前提に時間を確保。</td>
+              <td class="px-4 py-4 align-top">終了後の出庫集中と暗い道路に注意。</td>
+            </tr>
+            <tr class="border-t border-moss/15">
+              <th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss">確認先</th>
+              <td class="px-4 py-4 align-top">現地掲示・村の案内。</td>
+              <td class="px-4 py-4 align-top">同年の公式発表・交通規制。</td>
+              <td class="px-4 py-4 align-top">同年の点灯案内・現地掲示。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-5 text-xs leading-6 text-ink/50">料金・期間・規制は年ごとに変わります。正確な情報は弥彦村・管理者の公式発表を優先してください。</p>
+    </div>
   </section>
 
   <section class="section-space bg-paper">

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import Weather from '@/components/Weather.astro';
+import Amenities from '@/components/Amenities.astro';
+import SeasonalStrategy from '@/components/SeasonalStrategy.astro';
+import TourRoutes from '@/components/TourRoutes.astro';
+import ParkScience from '@/components/ParkScience.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+---
+
+<BaseLayout
+  title="弥彦公園を知る・訪問ガイド"
+  description="弥彦公園の天気・周辺施設・季節の戦略・回り方・歴史と自然を、非公式の非営利ガイドとして中立的にまとめます。"
+>
+  <PageHero
+    eyebrow="VISITOR GUIDE"
+    title="弥彦公園を、知って歩く。"
+    lead="天気の目安から周辺の施設、季節ごとの戦略、回り方、歴史と自然まで。中立的でわかりやすい訪問ガイドです。"
+    image="yahiko-momiji"
+    imageAlt="紅葉に包まれた弥彦公園の観月橋"
+    status="非公式・非営利の私設ガイド"
+  />
+
+  <Weather />
+  <Amenities />
+  <SeasonalStrategy />
+  <TourRoutes />
+  <ParkScience />
+  <SourcesSection />
+</BaseLayout>

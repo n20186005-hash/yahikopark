@@ -1,0 +1,79 @@
+---
+import SectionTitle from '@/components/SectionTitle.astro';
+import { site } from '@/data/site';
+import { renderWeatherHtml, type WeatherData } from '@/lib/weatherAdvice';
+
+const LAT = site.coordinates.latitude;
+const LON = site.coordinates.longitude;
+const API_URL =
+  `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
+  `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,precipitation,is_day` +
+  `&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,uv_index_max,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,sunrise,sunset` +
+  `&timezone=Asia%2FTokyo&forecast_days=7`;
+
+let data: WeatherData | null = null;
+try {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 6000);
+  const res = await fetch(API_URL, { signal: ctrl.signal });
+  clearTimeout(timer);
+  if (res.ok) data = (await res.json()) as WeatherData;
+} catch {
+  data = null;
+}
+
+const inner = data
+  ? renderWeatherHtml(data)
+  : `<div class="wx-fallback">現在の天気を取得できませんでした。しばらくしてからページを再読み込みするか、最新の天気情報をご確認ください。</div>`;
+---
+
+<section class="section-space bg-washi/65" id="weather">
+  <div class="container-shell max-w-4xl">
+    <SectionTitle
+      eyebrow="WEATHER & 7-DAY FORECAST"
+      title="今日の天気と、これからの予報。"
+      description={`${site.name}周辺の天気をお知らせします。出かけるか、何を持っていくか、そのままヒントにしてください。`}
+    />
+
+    <p class="mt-8 max-w-2xl text-sm leading-8 text-ink/65 sm:text-base">
+      現在の天気に加え、天候から「今日どう過ごすか」のめやすをまとめました。値は訪問時に自動で最新のものへ上書きされます。
+    </p>
+
+    <div class="mt-10 washi-panel p-7 sm:p-10" id="weather-root">
+      <div id="weather-inner" set:html={inner}></div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ LAT, LON }}>
+  import { renderWeatherHtml, type WeatherData } from '@/lib/weatherAdvice';
+
+  const root = document.getElementById('weather-root');
+  const innerEl = document.getElementById('weather-inner');
+
+  // タブ切り替え（#weather-root に delegation して innerHTML 再描画後も効く）
+  root?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest('[data-tab]');
+    if (!btn) return;
+    const tab = btn.getAttribute('data-tab');
+    if (!tab) return;
+    root.querySelectorAll('.wx-tab').forEach((b) => b.classList.toggle('is-active', b === btn));
+    root.querySelectorAll('.wx-panel').forEach((p) => {
+      const el = p as HTMLElement;
+      el.hidden = el.getAttribute('data-panel') !== tab;
+    });
+  });
+
+  const url =
+    `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}` +
+    `&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m,wind_gusts_10m,precipitation,is_day` +
+    `&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,uv_index_max,precipitation_probability_max,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,sunrise,sunset` +
+    `&timezone=Asia%2FTokyo&forecast_days=7`;
+
+  fetch(url)
+    .then((r) => r.json())
+    .then((d: WeatherData) => {
+      if (innerEl) innerEl.innerHTML = renderWeatherHtml(d);
+    })
+    .catch(() => {});
+</script>

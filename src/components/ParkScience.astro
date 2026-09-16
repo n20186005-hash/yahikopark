@@ -1,0 +1,85 @@
+---
+import SectionTitle from '@/components/SectionTitle.astro';
+
+// 非営利の科普サイトとして、歴史・伝承・生態を客観的かつ教育的に提示する。
+const facts = [
+  {
+    k: '弥彦山と「日本三彦山」',
+    v: '弥彦山は、英彦山（九州）、雪彦山（兵庫）と並ぶ「日本三彦山」の一つとされる信仰の山です。三山の名に共通する「彦（ひこ）」は古くから尊ばれる言葉で、広域の山岳信仰と結びついています。',
+  },
+  {
+    k: '彌彦神社と「越後一の宮」',
+    v: '公園は彌彦神社の外苑として親しまれています。彌彦神社は越後国の一之宮とされ、古くから人々の暮らしと信仰の中心でした。',
+  },
+  {
+    k: '近代の整備（1918年頃）',
+    v: '現在の公園の原型は、1918年頃に越後鉄道が整備したものとされます。駅から一分という立地は、当時の交通計画の名残です。',
+  },
+];
+
+const ecology = [
+  ['里山・渓流の接点', '日本海側の平野と山麓が接する場所にあり、湧水と渓流が小さな水生環境をつくっています。'],
+  ['渡り鳥の通過帯', '季節によっては渡り鳥をはじめとする鳥類が観察されやすく、静かな観察が楽しめます。'],
+  ['雪と生態の周期', '日本海側の豪雪は、土壌水分と春の芽吹きのリズムに関わっています。'],
+];
+
+const rules = [
+  ['ゴミは持ち帰る', '分別・持ち帰りで、水辺と森を次の来訪者のために守ります。'],
+  ['植物の採取はしない', '花や木の実、枝などの持ち出しは生態系を損ないます。'],
+  ['火気・喫煙に注意', '乾燥期や風の強い日は特に、火の取扱いにご配慮ください。'],
+  ['野生動物に餌やりをしない', '人の食べ物は生態系のバランスを崩します。遠くから静かに観察を。'],
+  ['他者のゆったりとした時間を', '写真撮影や通行は、他の来訪者の妨げにならない範囲で。'],
+];
+---
+
+<section class="section-space bg-washi/65" id="science">
+  <div class="container-shell">
+    <SectionTitle
+      eyebrow="KNOW THE PARK"
+      title="歴史・自然を、知って歩く。"
+      description="非公式の非営利ガイドとして、伝承と生態の概要を客観的にお伝えします。詳細な史実は各公式・公的資料をご参照ください。"
+    />
+
+    <div class="mt-12 grid gap-6 lg:grid-cols-[1.1fr_.9fr]">
+      <div class="grid gap-6">
+        {
+          facts.map((f) => (
+            <article class="washi-panel p-7 sm:p-9">
+              <h3 class="font-serif-jp text-xl text-moss">{f.k}</h3>
+              <p class="mt-3 text-sm leading-8 text-ink/66">{f.v}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="bg-moss p-7 text-paper sm:p-9">
+        <p class="text-xs font-bold tracking-[.16em] text-gold">ECOSYSTEM</p>
+        <h3 class="mt-3 text-2xl">弥彦の自然のしくみ</h3>
+        <ul class="mt-6 grid gap-5">
+          {
+            ecology.map(([t, d]) => (
+              <li>
+                <p class="font-bold text-paper">{t}</p>
+                <p class="mt-1 text-sm leading-7 text-paper/72">{d}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <p class="eyebrow before:hidden">FOR EVERYONE</p>
+      <h3 class="mt-4 text-2xl text-moss sm:text-3xl">みんなで守る、静かな時間。</h3>
+      <div class="mt-8 grid gap-px bg-moss/12 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          rules.map(([t, d]) => (
+            <div class="bg-paper p-6">
+              <h4 class="font-serif-jp text-lg text-moss">{t}</h4>
+              <p class="mt-2 text-sm leading-7 text-ink/64">{d}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

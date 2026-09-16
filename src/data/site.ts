@@ -10,13 +10,38 @@ export const site = {
     longitude: 138.8300798,
   },
   ga4: 'G-HXM22WWPKP',
+  // 評価・口コミ（Google マップ ユーザー評価と同期）
+  rating: {
+    value: 4.3,
+    count: 2142,
+  },
+  ratingSyncedAt: '2026年9月',
+  // Google マップ 共有リンク（全評価表示用）
+  mapsShareUrl: 'https://maps.app.goo.gl/ytxEr3Lwp5Aqp4Zp9',
+  // 公式・観光情報（E-E-A-T 向け権威リンク）
+  tourismUrl: 'https://www.e-yahiko.com/',
+  villageUrl: 'https://www.vill.yahiko.niigata.jp/',
+  tourismAssociationUrl: 'https://www.niigata-kankou.or.jp/',
+  // 実体バインド用の英語表記
+  attractionEn: 'Yahiko Park',
+  cityEn: 'Yahiko',
+  regionEn: 'Niigata',
+  countryEn: 'Japan',
 } as const;
+
+// E-E-A-T 強化のための公式・観光機関リンク（フッター・アクセスページで表示）
+export const authorityLinks = [
+  { label: '弥彦村公式サイト', href: 'https://www.vill.yahiko.niigata.jp/' },
+  { label: '新潟県観光協会', href: 'https://www.niigata-kankou.or.jp/' },
+  { label: '弥彦観光協会（公式）', href: 'https://www.e-yahiko.com/' },
+] as const;
 
 export const navigation = [
   { label: '紅葉', href: '/momiji/' },
   { label: '桜', href: '/sakura/' },
   { label: 'ライトアップ', href: '/light-up/' },
   { label: '散策コース', href: '/walking-course/' },
+  { label: '訪問ガイド', href: '/guide/' },
   { label: 'アクセス', href: '/access/' },
   { label: '駐車場', href: '/parking/' },
 ] as const;

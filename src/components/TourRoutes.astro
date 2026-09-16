@@ -1,0 +1,85 @@
+---
+import SectionTitle from '@/components/SectionTitle.astro';
+
+// 訪問者の構成・ペースに合わせた回り方。3つの層（家族／写真・自然／低体力・バリアフリー）と、
+// 所要時間別の一般ルート（半日／全日）を提示する。
+const byAudience = [
+  {
+    tag: 'FAMILY',
+    title: '亲子家庭',
+    time: '約60〜90分',
+    points: ['弥彦駅から平坦な園路で観月橋へ', 'トイレ・休憩所を意識した配置', '水辺は柵や看板を守って観察'],
+    tip: 'ベビーカーでも入りやすい区間を優先し、無理なく往復します。',
+  },
+  {
+    tag: 'PHOTO & NATURE',
+    title: '写真・自然',
+    time: '約90〜120分',
+    points: ['朝の光を狙うなら開園直後', 'もみじ谷・観月橋・渓流の順光', '人混みを避ける小径も活用'],
+    tip: '三脚の設置や長時間の占有は他の方の通行を妨げない範囲で。',
+  },
+  {
+    tag: 'LOW-EFFORT',
+    title: '低体力・バリアフリー',
+    time: '約30〜60分',
+    points: ['駅近の平坦ルートを中心に', '依托できるトイレの位置を事前確認', '無理せず短い往復で満足度を'],
+    tip: '高低差のある小径は避け、体調に合わせて休憩を挟みます。',
+  },
+];
+
+const byDuration = [
+  {
+    time: '半日',
+    title: '手軽コース（約30〜60分）',
+    body: '弥彦駅 → 公園入口 → もみじ谷・観月橋（往復）。乗り継ぎの合間や短い滞在でも、季節の表情を感じられます。',
+  },
+  {
+    time: '全日',
+    title: 'じっくりコース（約90〜150分）',
+    body: '観月橋に加え、渓流・滝・トンネル周辺を巡り、写真と休憩を含めて丁寧に。昼過ぎの光や空き具合の変化も楽しめます。',
+  },
+];
+---
+
+<section class="section-space bg-paper" id="routes">
+  <div class="container-shell">
+    <SectionTitle
+      eyebrow="HOW TO WALK"
+      title="訪問者に合わせた、回り方。"
+      description="ご家族の構成やペース、滞在時間に合わせて選べるよう、3つの層と2つの所要時間別ルートをまとめました。"
+    />
+
+    <h3 class="mt-12 text-sm font-bold tracking-[.16em] text-vermilion">訪問者の層で選ぶ</h3>
+    <div class="mt-6 grid gap-4 lg:grid-cols-3">
+      {
+        byAudience.map((r) => (
+          <article class="washi-panel p-7">
+            <p class="text-xs font-bold tracking-[.16em] text-ink/46">{r.tag}</p>
+            <h4 class="mt-2 font-serif-jp text-2xl text-moss">{r.title}</h4>
+            <p class="mt-1 text-sm text-vermilion">{r.time}</p>
+            <ul class="mt-4 grid gap-2 text-sm leading-7 text-ink/64">
+              {r.points.map((p) => <li class="flex gap-2"><span class="text-gold" aria-hidden="true">・</span><span>{p}</span></li>)}
+            </ul>
+            <p class="mt-4 border-t border-moss/12 pt-4 text-xs leading-6 text-ink/52">{r.tip}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <h3 class="mt-12 text-sm font-bold tracking-[.16em] text-vermilion">滞在時間で選ぶ</h3>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        byDuration.map((r) => (
+          <a href="/walking-course/" class="group grid gap-4 border-b border-moss/16 px-2 py-7 no-underline sm:grid-cols-[110px_1fr_auto] sm:items-center">
+            <span class="font-serif-jp text-3xl text-vermilion">{r.time}</span>
+            <span>
+              <strong class="block font-serif-jp text-xl font-medium tracking-[.08em] text-moss">{r.title}</strong>
+              <span class="mt-2 block text-sm leading-7 text-ink/62">{r.body}</span>
+            </span>
+            <span class="hidden text-xl text-moss transition-transform group-hover:translate-x-2 sm:block" aria-hidden="true">→</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

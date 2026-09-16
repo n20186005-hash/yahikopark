@@ -1,0 +1,42 @@
+---
+import { site } from '@/data/site';
+
+const syncedAt = site.ratingSyncedAt;
+const mapsUrl = site.mapsShareUrl;
+const tourismUrl = site.tourismUrl;
+---
+
+<section class="border-t border-moss/15 bg-paper py-14" id="sources">
+  <div class="container-shell max-w-4xl">
+    <p class="eyebrow before:hidden">SOURCES</p>
+    <h2 class="mt-5 text-2xl text-moss sm:text-3xl">出典・参照</h2>
+    <p class="mt-4 max-w-2xl text-sm leading-8 text-ink/62">
+      このガイドは非公式の私設サイトです。掲載内容は確認時点のものであり、最新の営業・規制・イベント情報は各公式・公的機関の案内を優先してください。
+    </p>
+
+    <ul class="mt-8 grid gap-4">
+      <li class="washi-panel p-6">
+        <p class="text-xs font-bold tracking-[.14em] text-vermilion">評価・口コミ</p>
+        <p class="mt-3 text-sm leading-7 text-ink/68">
+          同期：{syncedAt}（{site.rating.count.toLocaleString()} 件）。Google マップ（Google Maps）のユーザー評価を参照しています。
+        </p>
+        <p class="mt-3 text-xs leading-6 text-ink/52">
+          評価は Google マップのユーザー評価と同期（{syncedAt}）。著作権は原作者および Google マップに帰属します。
+        </p>
+        <a class="mt-3 inline-block text-sm font-bold text-moss underline decoration-moss/30 underline-offset-2" href={mapsUrl} target="_blank" rel="noopener noreferrer">
+          Google マップで全ての評価を見る ↗
+        </a>
+      </li>
+
+      <li class="washi-panel p-6">
+        <p class="text-xs font-bold tracking-[.14em] text-vermilion">公式・観光情報</p>
+        <p class="mt-3 text-sm leading-7 text-ink/68">
+          弥彦観光協会公式サイト（やひ恋）などの公的・公式案内を確認し、現地の最新情報を優先してください。
+        </p>
+        <a class="mt-3 inline-block text-sm font-bold text-moss underline decoration-moss/30 underline-offset-2" href={tourismUrl} target="_blank" rel="noopener noreferrer">
+          弥彦観光協会公式サイト ↗
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

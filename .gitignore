@@ -1,6 +1,37 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
 .astro/
+
+# Local dev / deploy
 .wrangler/
 .dev.vars
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Local agent data
+.codebuddy/
+
+# Debug / build & install scratch logs (not needed for upload)
+*.log
+build.log
+npm*.log
+cache.log
+install.log
+pnpm_install.log
+status.txt
+done.txt
+done_final.txt
+
+# Scratch docs from debugging
+doc.md
+FACT-CHECK.md
+VALIDATION.md

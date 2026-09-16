@@ -1,11 +1,11 @@
 ---
-import { navigation, site } from '@/data/site';
+import { navigation, site, authorityLinks } from '@/data/site';
 const year = new Date().getFullYear();
 ---
 
 <footer class="bg-moss text-paper">
   <div class="container-shell py-16 sm:py-20">
-    <div class="grid gap-12 lg:grid-cols-[1.3fr_.7fr_.7fr]">
+    <div class="grid gap-12 lg:grid-cols-[1.3fr_.7fr_.7fr_.85fr]">
       <div>
         <div class="mb-6 flex items-center gap-4">
           <span class="grid size-12 place-items-center rounded-full border border-paper/20 text-gold" aria-hidden="true">
@@ -36,6 +36,13 @@ const year = new Date().getFullYear();
           <li><a class="no-underline hover:text-paper" href="/faq/">よくある質問</a></li>
           <li><a class="no-underline hover:text-paper" href="/photo-credits/">写真クレジット</a></li>
           <li><a class="no-underline hover:text-paper" href="/privacy/">プライバシー</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="mb-4 text-xs font-bold tracking-[.18em] text-gold">公式・観光</p>
+        <ul class="grid gap-2 text-sm text-paper/72">
+          {authorityLinks.map((item) => <li><a class="no-underline hover:text-paper" href={item.href} target="_blank" rel="noopener noreferrer">{item.label} ↗</a></li>)}
         </ul>
       </div>
     </div>

@@ -1,0 +1,48 @@
+---
+import { site } from '@/data/site';
+import SectionTitle from '@/components/SectionTitle.astro';
+
+const rating = site.rating.value;
+const count = site.rating.count;
+const syncedAt = site.ratingSyncedAt;
+const mapsUrl = site.mapsShareUrl;
+const pct = Math.max(0, Math.min(100, (rating / 5) * 100));
+---
+
+<section class="section-space bg-washi/65" id="reviews">
+  <div class="container-shell">
+    <SectionTitle
+      eyebrow="REVIEWS"
+      title="訪れた人たちの評価"
+      description="弥彦公園の評価と口コミ数は、Google マップ（Google Maps）のユーザー評価と同期しています。"
+    />
+
+    <div class="mt-10 washi-panel p-7 sm:p-10">
+      <div class="flex flex-wrap items-center gap-x-7 gap-y-3">
+        <p class="font-serif-jp text-6xl leading-none text-moss">{rating.toFixed(1)}</p>
+        <div>
+          <div class="relative inline-block text-2xl leading-none tracking-[.1em]" aria-hidden="true">
+            <span class="text-gold/30">★★★★★</span>
+            <span class="absolute inset-0 overflow-hidden whitespace-nowrap text-gold" style={`width:${pct}%`}>★★★★★</span>
+          </div>
+          <p class="mt-1.5 text-sm text-ink/60">{count.toLocaleString()} 件の評価</p>
+        </div>
+      </div>
+
+      <p class="mt-6 text-xs leading-6 text-ink/52">
+        評価・口コミ数は Google マップ（Google Maps）のユーザー評価と同期しています · {syncedAt} ·
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="underline decoration-ink/30 underline-offset-2 hover:text-moss">Google マップで全ての評価を見る ↗</a>
+      </p>
+
+      <p class="mt-4 border-t border-moss/12 pt-4 text-xs leading-6 text-ink/52">
+        本評価は Google マップのユーザー評価と同期（{syncedAt}）。著作権は原作者および Google マップに帰属します。
+      </p>
+
+      <div class="mt-6">
+        <a class="btn-secondary" href={mapsUrl} target="_blank" rel="noopener noreferrer">
+          Google マップで全ての評価を見る <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

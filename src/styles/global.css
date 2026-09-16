@@ -223,3 +223,149 @@ h3 {
     transition-duration: .01ms !important;
   }
 }
+
+/* ---- Weather module ---- */
+.wx-card {
+  border: 1px solid rgba(36, 59, 42, .12);
+  background: #fffdf8;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+}
+.wx-now {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+.wx-temp-big {
+  font-family: var(--font-serif-jp);
+  font-size: 3.25rem;
+  line-height: 1;
+  color: #243b2a;
+}
+.wx-temp-big span {
+  margin-left: .25rem;
+  font-size: 1.25rem;
+  color: rgba(27, 33, 28, .5);
+}
+.wx-code {
+  margin-top: .4rem;
+  font-size: .9rem;
+  font-weight: 700;
+  color: rgba(27, 33, 28, .8);
+}
+.wx-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 1.25rem;
+  font-size: .75rem;
+  color: rgba(27, 33, 28, .6);
+}
+.wx-risk {
+  margin-top: 1.25rem;
+  border: 1px solid rgba(168, 60, 48, .3);
+  background: rgba(168, 60, 48, .05);
+  border-radius: .85rem;
+  padding: .85rem 1rem;
+  font-size: .85rem;
+  line-height: 1.75;
+  color: #a83c30;
+}
+.wx-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1.5rem;
+  padding-bottom: .85rem;
+  border-bottom: 1px solid rgba(36, 59, 42, .1);
+}
+.wx-tab {
+  border: 1px solid rgba(36, 59, 42, .15);
+  border-radius: 999px;
+  padding: .4rem 1rem;
+  font-size: .75rem;
+  font-weight: 700;
+  color: rgba(27, 33, 28, .6);
+  background: transparent;
+  cursor: pointer;
+  transition: colors .2s ease;
+}
+.wx-tab.is-active {
+  border-color: #243b2a;
+  background: #243b2a;
+  color: #fffdf8;
+}
+.wx-tab:disabled {
+  opacity: .4;
+  cursor: default;
+}
+.wx-panels {
+  margin-top: 1rem;
+}
+.wx-panel {
+  display: grid;
+  gap: .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.wx-panel[hidden] {
+  display: none;
+}
+.wx-panel li {
+  display: flex;
+  gap: .5rem;
+  font-size: .85rem;
+  line-height: 1.75;
+  color: rgba(27, 33, 28, .72);
+}
+.wx-panel li::before {
+  content: "✓";
+  color: #243b2a;
+  font-weight: 700;
+}
+.wx-forecast {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .5rem;
+  margin-top: 1.75rem;
+}
+.wx-day {
+  border-radius: .85rem;
+  background: rgba(246, 241, 231, .6);
+  padding: .75rem .5rem;
+  text-align: center;
+}
+.wx-dow {
+  font-size: .7rem;
+  font-weight: 700;
+  color: rgba(27, 33, 28, .7);
+}
+.wx-ico {
+  margin: .35rem 0;
+  font-size: 1.4rem;
+}
+.wx-temp {
+  font-size: .75rem;
+  color: rgba(27, 33, 28, .8);
+}
+.wx-pop {
+  font-size: .62rem;
+  color: rgba(27, 33, 28, .5);
+}
+.wx-note {
+  margin-top: 1.25rem;
+  font-size: .72rem;
+  line-height: 1.6;
+  color: rgba(27, 33, 28, .45);
+}
+.wx-fallback {
+  font-size: .85rem;
+  color: rgba(27, 33, 28, .6);
+}
+
+@media (min-width: 640px) {
+  .wx-card { padding: 2rem; }
+  .wx-forecast { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+}

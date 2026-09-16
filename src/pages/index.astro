@@ -3,12 +3,45 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import LocalPhoto from '@/components/LocalPhoto.astro';
 import SectionTitle from '@/components/SectionTitle.astro';
 import Notice from '@/components/Notice.astro';
-import { facts, seasons } from '@/data/site';
+import Reviews from '@/components/Reviews.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+import Weather from '@/components/Weather.astro';
+import { facts, seasons, site } from '@/data/site';
+
+const homeFaqs = [
+  [
+    '弥彦公園の評価はどのくらいですか？',
+    `弥彦公園の評価は Google マップ（Google Maps）で ${site.rating.value}（${site.rating.count.toLocaleString()} 件の評価、${site.ratingSyncedAt} 同期）です。詳細は Google マップでご確認ください。`,
+  ],
+  [
+    '弥彦公園はどこにありますか？',
+    '新潟県弥彦村（JR弥彦駅から徒歩約1分）にあります。住所は 〒959-0323 新潟県西蒲原郡弥彦村弥彦667-1 です。',
+  ],
+  [
+    '入園料はかかりますか？',
+    '弥彦公園の入園は無料です。紅葉期などは周辺駐車場が有料となる場合があります。',
+  ],
+  [
+    '紅葉の見頃はいつですか？',
+    '例年11月上旬〜中旬が中心です。気温や天候で前後するため、直前の情報をご確認ください。',
+  ],
+  [
+    '車で行く場合の目安は？',
+    '北陸自動車道・三条燕ICから約25分が目安です。詳しくはアクセスページをご覧ください。',
+  ],
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: homeFaqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
 ---
 
 <BaseLayout
-  title="弥彦公園ガイド｜紅葉・桜・ライトアップ・駐車場・アクセス"
-  description="弥彦公園の紅葉、桜、ライトアップ、アクセス、駐車場、散策コースを、季節ごとにわかりやすく紹介します。"
+  title="弥彦公園ガイド（Yahiko Park）｜新潟の見頃・紅葉・桜・アクセス・駐車場"
+  description="新潟県弥彦公園の紅葉、桜、ライトアップ、見頃、アクセス、駐車場、散策コースを季節ごとにわかりやすく紹介します。"
+  appendSchema={faqSchema}
 >
   <section class="relative min-h-[720px] overflow-hidden bg-moss text-paper sm:min-h-[780px]">
     <div class="absolute inset-0">
@@ -183,4 +216,54 @@ import { facts, seasons } from '@/data/site';
       </div>
     </div>
   </section>
+
+  <Weather />
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
+      <div>
+        <SectionTitle
+          eyebrow="KNOW THE PARK"
+          title="歴史も、自然も、知って歩く。"
+          description="弥彦山は英彦山・雪彦山と並ぶ「日本三彦山」の一つ。彌彦神社は越後国の一之宮とされ、1918年頃の整備で今日の公園の原型が生まれました。"
+        />
+        <div class="prose-jp mt-8 text-sm leading-8 text-ink/68 sm:text-base">
+          <p>日本海側の平野と山麓が接するこの地は、湧水と渓流、渡り鳥の通過帯でもあります。季節のリズムと生態のつながりを、静かに楽しむための知識をまとめました。</p>
+        </div>
+        <a class="btn-primary mt-9" href="/guide/">弥彦公園を知る・訪問ガイド <span aria-hidden="true">→</span></a>
+      </div>
+      <LocalPhoto
+        name="yahiko-street"
+        alt="弥彦駅から彌彦神社方面へ続く外苑坂通り"
+        caption="弥彦・外苑坂通り"
+        credit="Drph17 / CC BY-SA 4.0"
+        imageClass="aspect-[4/5]"
+      />
+    </div>
+  </section>
+
+  <Reviews />
+
+  <section class="section-space bg-paper">
+    <div class="container-shell max-w-4xl">
+      <p class="eyebrow before:hidden">FAQ</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,4rem)] leading-[1.35] text-moss">よくある質問</h2>
+      <div class="mt-10 grid gap-3">
+        {homeFaqs.map(([question, answer], index) => (
+          <details class="group border border-moss/15 bg-paper open:bg-washi/55">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-5 px-5 py-5 sm:px-7 sm:py-6">
+              <span class="flex gap-4"><span class="font-serif-jp text-xl text-gold">{String(index + 1).padStart(2, '0')}</span><span class="font-bold tracking-[.04em] text-moss">{question}</span></span>
+              <span class="grid size-8 shrink-0 place-items-center rounded-full border border-moss/20 text-moss transition-transform group-open:rotate-45" aria-hidden="true">＋</span>
+            </summary>
+            <div class="px-5 pb-6 pl-[4.25rem] text-sm leading-8 text-ink/65 sm:px-7 sm:pb-7 sm:pl-[5.2rem]">{answer}</div>
+          </details>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a class="btn-secondary" href="/faq/">さらに詳しいよくある質問 <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <SourcesSection />
 </BaseLayout>
