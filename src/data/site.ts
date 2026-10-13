@@ -13,9 +13,9 @@ export const site = {
   // 評価・口コミ（Google マップ ユーザー評価と同期）
   rating: {
     value: 4.3,
-    count: 2142,
+    count: 2150,
   },
-  ratingSyncedAt: '2026年9月',
+  ratingSyncedAt: '2026年10月',
   // Google マップ 共有リンク（全評価表示用）
   mapsShareUrl: 'https://maps.app.goo.gl/ytxEr3Lwp5Aqp4Zp9',
   // 公式・観光情報（E-E-A-T 向け権威リンク）
@@ -87,3 +87,25 @@ export const facts = [
   { label: '弥彦駅から', value: '徒歩 約1分' },
   { label: '広さ', value: '約13万㎡' },
 ] as const;
+
+// 2026年 紅葉ライトアップ（新潟県観光協会・柏崎市の発表情報を参照。会場・日・料金・交通規制は現地の最新案内を優先）
+export const autumnLightUp2026 = {
+  year: 2026,
+  periodText: '10月31日〜11月30日',
+  periodStart: '10月31日',
+  periodEnd: '11月30日',
+  lightHours: '17:00〜21:00',
+  location: '弥彦公園 もみじ谷',
+  // 駐車費用は新潟県観光情報を参考値として記載。実際の会場・日・交通規制は現地案内を優先
+  parkingFeeReference: '普通車 1,000円（参考値：新潟県観光情報）',
+  sources: [
+    {
+      label: '新潟県観光協会（2026年イベント情報）',
+      href: 'https://niigata-kankou.or.jp/event/detail_13501.html',
+    },
+    {
+      label: '柏崎市（2026年秋のイベント情報）',
+      href: 'https://www.city.kashiwazaki.lg.jp/kanko_bunka_sports/kanko/event_matsuri/akinoevent_matsuri/18189.html',
+    },
+  ],
+} as const;

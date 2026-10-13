@@ -3,20 +3,50 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import Notice from '@/components/Notice.astro';
 import SectionTitle from '@/components/SectionTitle.astro';
+import { autumnLightUp2026 } from '@/data/site';
+const mapsSearch = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('弥彦公園 駐車場')}`;
 ---
 
-<BaseLayout title="弥彦公園 駐車場ガイド｜料金目安・混雑状況・周辺案内" description="弥彦公園周辺の駐車場、通常期と紅葉期の運用の違い、混雑回避、到着前に確認したい項目を案内します。">
+<BaseLayout title="弥彦公園の駐車場【2026年】料金・場所・紅葉期の混雑情報" description="弥彦公園周辺の駐車場、2026年の紅葉期料金（参考）、通常期と紅葉期の運用の違い、混雑回避、観月橋までの歩き方を案内します。">
   <PageHero
     eyebrow="PARKING & TRAFFIC"
     title="停める場所まで、旅の計画。"
     lead="通常時と紅葉期では、駐車場の運用や道路の混み方が変わります。到着してから探すのではなく、出発前に確認を。"
     image="yahiko-street"
     imageAlt="弥彦駅から彌彦神社方面へ続く町並み"
-    status="2026年秋の臨時駐車場・料金：未発表"
+    status={`2026年紅葉期の参考料金：普通車 ${autumnLightUp2026.parkingFeeReference.replace('（参考値：新潟県観光情報）', '')}（要確認）`}
   />
 
   <section class="bg-paper py-7">
-    <div class="container-shell"><Notice label="重要" title="紅葉期は、駐車場が有料運用になる場合があります。" body="対象駐車場、料金、期間、交通規制は年ごとに変わります。2026年の運用は正式発表後に更新します。" tone="season" /></div>
+    <div class="container-shell"><Notice label="重要" title="紅葉期は、駐車場が有料運用になる場合があります。" body={`2026年のライトアップ期間（${autumnLightUp2026.periodText}）の周辺駐車場には、普通車の有料運用の案内例があります。対象駐車場、料金、期間、交通規制は年ごとに変わるため、現地の最新案内を優先してください。`} tone="season" /></div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell max-w-4xl">
+      <SectionTitle eyebrow="2026 PARKING FEE" title="2026年の紅葉期 駐車料金（参考）" />
+      <div class="mt-8 washi-panel p-7 sm:p-9">
+        <p class="text-sm leading-8 text-ink/70">
+          2026年のライトアップ期間（<strong class="text-moss">{autumnLightUp2026.periodText}</strong>）の周辺駐車場には、<strong class="text-moss">{autumnLightUp2026.parkingFeeReference}</strong> の案内例があります。ただし、実際の会場・料金・日・交通規制は年ごとに異なり、現地の最新案内を優先してください。
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a class="btn-primary" href={mapsSearch} target="_blank" rel="noopener noreferrer">周辺駐車場を地図で確認 <span aria-hidden="true">↗</span></a>
+          <a class="btn-secondary" href="/light-up/">ライトアップ情報 <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="mt-6 border-t border-moss/12 pt-5 text-xs leading-6 text-ink/52">
+          駐車場名や料金の範囲は、公式発表を確認のうえお出かけください。当サイトは非公式のガイドです。
+        </p>
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <div class="washi-panel p-7">
+          <p class="text-xs font-bold tracking-[.14em] text-vermilion">駐車場から観月橋へ</p>
+          <p class="mt-4 text-sm leading-7 text-ink/62">駐車後は弥彦駅側の入口から園内へ。もみじ谷・観月橋までは、入口から平坦な園路で徒歩数分です。混雑時は園路の幅に余裕を持たせて歩きます。</p>
+        </div>
+        <div class="washi-panel p-7">
+          <p class="text-xs font-bold tracking-[.14em] text-vermilion">満車時の動き方</p>
+          <p class="mt-4 text-sm leading-7 text-ink/62">入口付近に固執せず、案内員と標識に従います。見頃の休日や点灯日は早めの到着と、列車利用の検討が安心です。</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section-space bg-paper">

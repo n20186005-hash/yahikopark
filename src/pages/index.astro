@@ -6,7 +6,7 @@ import Notice from '@/components/Notice.astro';
 import Reviews from '@/components/Reviews.astro';
 import SourcesSection from '@/components/SourcesSection.astro';
 import Weather from '@/components/Weather.astro';
-import { facts, seasons, site } from '@/data/site';
+import { facts, seasons, site, autumnLightUp2026 } from '@/data/site';
 
 const homeFaqs = [
   [
@@ -39,8 +39,8 @@ const faqSchema = {
 ---
 
 <BaseLayout
-  title="弥彦公園ガイド（Yahiko Park）｜新潟の見頃・紅葉・桜・アクセス・駐車場"
-  description="新潟県弥彦公園の紅葉、桜、ライトアップ、見頃、アクセス、駐車場、散策コースを季節ごとにわかりやすく紹介します。"
+  title="弥彦公園ガイド｜紅葉・もみじ谷・駐車場・アクセス【2026】"
+  description="新潟県弥彦公園の紅葉、もみじ谷、ライトアップ、見頃、駐車場、アクセス、散策コースを季節ごとにわかりやすく紹介します。"
   appendSchema={faqSchema}
 >
   <section class="relative min-h-[720px] overflow-hidden bg-moss text-paper sm:min-h-[780px]">
@@ -58,7 +58,7 @@ const faqSchema = {
         <p class="text-xs font-bold tracking-[.25em] text-gold">YAHIKO PARK · NIIGATA</p>
         <h1 class="mt-6 text-[clamp(3.2rem,10vw,8.5rem)] leading-[1.02] tracking-[.08em] text-paper">
           <span class="mb-5 block text-[.34em] tracking-[.2em] text-gold">弥彦公園</span>
-          駅から一分、<br /><span class="text-[.72em]">四季を歩く。</span>
+          JR弥彦駅から一分、<br /><span class="text-[.72em]">四季を歩く。</span>
         </h1>
         <p class="mt-8 max-w-xl text-sm leading-8 text-paper/80 sm:text-base">
           朱い観月橋、静かな水音、桜から紅葉へ。弥彦公園で過ごす時間を、季節・歩き方・交通から整える旅のガイドです。
@@ -84,10 +84,38 @@ const faqSchema = {
     <div class="container-shell">
       <Notice
         label="2026 AUTUMN"
-        title="2026年の紅葉ライトアップ日程は、まだ発表されていません。"
-        body="開催日、点灯時間、臨時駐車場は正式案内の公開後に更新します。過年度の日程を2026年情報として掲載していません。"
+        title={`2026年の紅葉ライトアップ：${autumnLightUp2026.periodText}（${autumnLightUp2026.lightHours}・${autumnLightUp2026.location}）`}
+        body="新潟県観光協会・柏崎市の発表情報をもとに掲載しています。駐車場の料金・日・交通規制は、現地の最新案内を優先してください。"
         tone="season"
       />
+      <p class="mt-3 text-xs leading-6 text-ink/52">
+        参照：
+        {autumnLightUp2026.sources.map((source, index) => (
+          <span><a href={source.href} target="_blank" rel="noopener noreferrer" class="underline decoration-ink/25 underline-offset-2 hover:text-moss">{source.label}</a>{index < autumnLightUp2026.sources.length - 1 ? ' ・ ' : ''}</span>
+        ))}
+         ｜ <a href="/light-up/" class="underline decoration-ink/25 underline-offset-2 hover:text-moss">ライトアップ詳細</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y border-moss/12 bg-washi/55 py-10">
+    <div class="container-shell">
+      <p class="eyebrow before:hidden">クイックガイド</p>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          ['駐車場', '紅葉期の料金・混雑をチェック', '/parking/'],
+          ['紅葉（もみじ谷）', '見頃の目安と観月橋', '/momiji/'],
+          ['ライトアップ', `2026年は${autumnLightUp2026.periodText}`, '/light-up/'],
+          ['アクセス', '電車・車での行き方', '/access/'],
+          ['散策コース', '30／60／90分の歩き方', '/walking-course/'],
+          ['よくある質問', '料金・時間・ペット', '/faq/'],
+        ].map(([t, d, h]) => (
+          <a href={h} class="group flex items-center justify-between gap-4 rounded-xl border border-moss/15 bg-paper px-5 py-5 no-underline transition-colors hover:bg-washi/70">
+            <span><strong class="block font-serif-jp text-lg tracking-[.06em] text-moss">{t}</strong><span class="mt-1 block text-xs leading-6 text-ink/58">{d}</span></span>
+            <span class="text-xl text-moss transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 

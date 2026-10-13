@@ -3,32 +3,57 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/PageHero.astro';
 import Notice from '@/components/Notice.astro';
 import SectionTitle from '@/components/SectionTitle.astro';
+import { autumnLightUp2026 } from '@/data/site';
 ---
 
-<BaseLayout title="紅葉ライトアップ" description="弥彦公園もみじ谷の紅葉ライトアップについて、2026年の発表状況、例年の目安、夜間散策の注意点を案内します。">
+<BaseLayout title="紅葉ライトアップ 2026｜弥彦公園もみじ谷の日程・点灯時間" description="弥彦公園もみじ谷の2026年紅葉ライトアップについて、開催期間（10月31日〜11月30日）、点灯時間（17:00〜21:00）、場所、夜間散策の注意点を案内します。">
   <PageHero
-    eyebrow="AUTUMN LIGHT-UP"
+    eyebrow="AUTUMN LIGHT-UP 2026"
     title="夜に浮かぶ、朱と紅。"
-    lead="もみじ谷と観月橋が光に包まれる秋の夜。開催状況、時間、足元、混雑を確認してから出かけましょう。"
+    lead="もみじ谷と観月橋が光に包まれる秋の夜。2026年の開催情報が出そろいました。時間、足元、混雑を確認してから出かけましょう。"
     image="yahiko-momiji"
     imageAlt="弥彦公園もみじ谷の紅葉と観月橋"
-    status="2026年日程：未発表"
+    status={`2026年：${autumnLightUp2026.periodText}・${autumnLightUp2026.lightHours}`}
   />
 
   <section class="bg-paper py-7">
     <div class="container-shell">
       <Notice
         label="2026年情報"
-        title="開催日・点灯時間・交通規制は、正式発表後に掲載します。"
-        body="現時点では2026年秋の公式日程を確認できていません。過年度の開催日は参考にとどめ、今年の情報として流用していません。"
+        title={`2026年は ${autumnLightUp2026.periodText} に、もみじ谷を点灯します（${autumnLightUp2026.lightHours}）。`}
+        body="新潟県観光協会・柏崎市の発表情報をもとに掲載しています。駐車場の料金・日・交通規制は、現地の最新案内を優先してください。"
         tone="season"
       />
+      <p class="mt-3 text-xs leading-6 text-ink/52">
+        参照：
+        {autumnLightUp2026.sources.map((source, index) => (
+          <span><a href={source.href} target="_blank" rel="noopener noreferrer" class="underline decoration-ink/25 underline-offset-2 hover:text-moss">{source.label}</a>{index < autumnLightUp2026.sources.length - 1 ? ' ・ ' : ''}</span>
+        ))}
+      </p>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper">
+    <div class="container-shell max-w-4xl">
+      <SectionTitle eyebrow="2026 SCHEDULE" title="2026年の開催情報" />
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full min-w-[560px] border-collapse text-sm">
+          <caption class="sr-only">2026年 弥彦公園紅葉ライトアップの開催情報</caption>
+          <tbody class="text-ink/72">
+            <tr class="border-t border-moss/15"><th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss w-40">開催期間</th><td class="px-4 py-4 align-top">{autumnLightUp2026.periodText}</td></tr>
+            <tr class="border-t border-moss/15"><th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss">点灯時間</th><td class="px-4 py-4 align-top">{autumnLightUp2026.lightHours}</td></tr>
+            <tr class="border-t border-moss/15"><th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss">場所</th><td class="px-4 py-4 align-top">{autumnLightUp2026.location}</td></tr>
+            <tr class="border-t border-moss/15"><th scope="row" class="px-4 py-4 text-left align-top font-bold text-moss">駐車場（参考）</th><td class="px-4 py-4 align-top">{autumnLightUp2026.parkingFeeReference}。会場・日・交通規制は現地案内を優先してください。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-5 text-xs leading-6 text-ink/50">開催日・点灯時間は天候や現地の運用で変わる場合があります。最新の案内をご確認のうえお出かけください。</p>
     </div>
   </section>
 
   <section class="section-space bg-paper">
     <div class="container-shell grid gap-14 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
-      <SectionTitle eyebrow="TYPICAL SEASON" title="例年は、紅葉の時期に合わせて。" description="過年度の観光案内では、10月下旬頃から紅葉の終盤まで、夕方から夜に点灯する形が一般的でした。年ごとに日程・終了時刻・運用が変わるため、下記は計画のための目安です。" />
+      <SectionTitle eyebrow="TYPICAL SEASON" title="例年は、紅葉の時期に合わせて。" description="過年度の観光案内では、10月下旬頃から紅葉の終盤まで、夕方から夜に点灯する形が一般的でした。2026年は上の日程で開催が決まっていますが、年ごとに日程・終了時刻・運用が変わるため、下記は計画のための目安です。" />
       <div class="grid gap-px bg-moss/15 sm:grid-cols-3">
         {[
           ['時期の目安', '10月下旬〜紅葉終盤'],

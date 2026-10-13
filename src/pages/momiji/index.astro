@@ -4,21 +4,42 @@ import PageHero from '@/components/PageHero.astro';
 import SectionTitle from '@/components/SectionTitle.astro';
 import LocalPhoto from '@/components/LocalPhoto.astro';
 import Notice from '@/components/Notice.astro';
+import { autumnLightUp2026 } from '@/data/site';
 ---
 
-<BaseLayout title="弥彦公園 紅葉・もみじ谷｜見頃とライトアップの目安" description="弥彦公園もみじ谷の見頃（例年11月上旬〜中旬）、観月橋、混雑を避ける時間帯、写真撮影、夜のライトアップのポイントを紹介します。">
+<BaseLayout title="弥彦公園の紅葉2026｜もみじ谷の見頃・観月橋・ライトアップ" description="弥彦公園もみじ谷の2026年紅葉情報（ライトアップは10月31日〜11月30日）、見頃の目安（例年11月上旬〜中旬）、観月橋、混雑を避ける時間帯、写真撮影のポイントを紹介します。">
   <PageHero
     eyebrow="MOMIJI VALLEY"
     title="朱の橋、紅の谷。"
     lead="観月橋を包むように色づく、弥彦公園のもみじ谷。例年の見頃、歩く時間、撮影の考え方をまとめました。"
     image="yahiko-momiji"
     imageAlt="紅葉に包まれた弥彦公園もみじ谷と朱色の観月橋"
-    status="例年の見頃：11月上旬〜中旬を中心に変動"
+    status={`2026年ライトアップ：${autumnLightUp2026.periodText}（${autumnLightUp2026.lightHours}）`}
   />
 
   <section class="bg-paper py-7">
     <div class="container-shell">
       <Notice label="見頃について" title="日付ではなく、色づきの進み方で計画を。" body="紅葉は最低気温、雨、強風の影響を受けます。例年の時期は目安です。直前の色づき情報と天候を合わせて判断してください。" tone="season" />
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell max-w-4xl">
+      <SectionTitle eyebrow="2026 RED LEAVES" title="2026年の紅葉情報" />
+      <div class="mt-10 grid gap-4">
+        <article class="washi-panel p-7">
+          <p class="text-xs font-bold tracking-[.14em] text-vermilion">公式ライトアップ日程（確定）</p>
+          <p class="mt-4 text-sm leading-8 text-ink/70"><strong class="text-moss">2026年は {autumnLightUp2026.periodText}</strong> に、もみじ谷を点灯します（{autumnLightUp2026.lightHours}・{autumnLightUp2026.location}）。<a href="/light-up/" class="underline decoration-moss/30 underline-offset-2 hover:text-moss">詳細はライトアップページ ↗</a></p>
+        </article>
+        <article class="washi-panel p-7">
+          <p class="text-xs font-bold tracking-[.14em] text-vermilion">例年の見頃（目安）</p>
+          <p class="mt-4 text-sm leading-8 text-ink/70">もみじ谷・観月橋の色づきは<strong class="text-moss">例年11月上旬〜中旬</strong>を中心に進みます。気温・雨・風で前後するため、直前の情報を確認してください。</p>
+        </article>
+        <article class="washi-panel p-7">
+          <p class="text-xs font-bold tracking-[.14em] text-vermilion">当年の色づき状況（随時更新）</p>
+          <p class="mt-4 text-sm leading-8 text-ink/70">2026年の実際の色づきは、公式・現地の発表情報を確認しながら、わかりしだいこのページに追記します。見頃前の投稿や未確定情報は掲載しません。</p>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -94,7 +115,7 @@ import Notice from '@/components/Notice.astro';
       <div>
         <SectionTitle eyebrow="NIGHT LIGHT-UP" title="夜のライトアップ（点灯）" />
         <div class="prose-jp mt-8 text-sm leading-8 text-ink/68 sm:text-base">
-          <p>紅葉期には、もみじ谷と観月橋を照らすライトアップが行われる年があります。日程・点灯時間・交通規制は年ごとに異なり、2026年の正式日程は発表されていません。</p>
+          <p>2026年は<strong>{autumnLightUp2026.periodText}</strong> に、もみじ谷と観月橋を照らすライトアップが開催されます（点灯時間 {autumnLightUp2026.lightHours}）。</p>
           <p>開催日は混雑が見込まれます。三脚の使用可否や通行規制、終了時刻は、当年の案内と現地掲示を優先してください。</p>
         </div>
         <a class="btn-primary mt-8" href="/light-up/">ライトアップ詳細を見る <span aria-hidden="true">→</span></a>

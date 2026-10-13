@@ -54,6 +54,7 @@ const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${site.coord
         <div class="washi-panel p-7"><p class="text-xs font-bold tracking-[.14em] text-vermilion">高速道路</p><p class="mt-4 font-serif-jp text-2xl text-moss">北陸自動車道<br />三条燕IC</p><p class="mt-4 text-sm leading-7 text-ink/62">通常時の目安：約25分</p></div>
         <div class="washi-panel p-7"><p class="text-xs font-bold tracking-[.14em] text-vermilion">住所</p><p id="park-address" class="mt-4 text-sm font-bold leading-8 text-moss">{site.address}</p><button id="copy-address" type="button" class="btn-secondary mt-5 !min-h-10 !text-xs">住所をコピー</button><p id="copy-result" class="mt-3 min-h-5 text-xs text-ink/50" aria-live="polite"></p></div>
       </div>
+      <a class="btn-secondary mt-7" href="/parking/">紅葉期の駐車場・渋滞情報 <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
@@ -138,6 +139,25 @@ const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${site.coord
         ))}
       </ul>
       <p class="mt-6 text-xs leading-6 text-ink/50">当サイトは非公式のガイドです。最新の運行・規制・イベント情報は、各公式サイトを優先してください。</p>
+    </div>
+  </section>
+
+  <section class="section-space bg-washi/65">
+    <div class="container-shell">
+      <p class="eyebrow before:hidden">関連するガイド</p>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          ['駐車場', '紅葉期の料金・混雑', '/parking/'],
+          ['紅葉（もみじ谷）', '見頃の目安', '/momiji/'],
+          ['ライトアップ', '2026年の点灯日程', '/light-up/'],
+          ['散策コース', '30／60／90分の歩き方', '/walking-course/'],
+        ].map(([t, d, h]) => (
+          <a href={h} class="group flex items-center justify-between gap-4 rounded-xl border border-moss/15 bg-paper px-5 py-5 no-underline transition-colors hover:bg-washi/70">
+            <span><strong class="block font-serif-jp text-lg tracking-[.06em] text-moss">{t}</strong><span class="mt-1 block text-xs leading-6 text-ink/58">{d}</span></span>
+            <span class="text-xl text-moss transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 
