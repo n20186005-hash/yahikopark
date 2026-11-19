@@ -1,0 +1,9 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { nearbySpots } from '@/data/nearby';
+---
+
+<BaseLayout title="弥彦公園の周辺観光スポット｜彌彦神社・ロープウェイ・おもてなし広場" description="弥彦公園から一緒に巡りたい4つのスポット。彌彦神社、弥彦山ロープウェイ、おもてなし広場、弥彦山御神廟を写真・アクセス・歴史とともに紹介。">
+  <section class="bg-moss py-20 text-paper sm:py-28"><div class="container-shell"><p class="text-xs font-bold tracking-[.25em] text-gold">EXPLORE YAHIKO</p><h1 class="mt-6 font-serif-jp text-4xl sm:text-6xl">弥彦公園の周辺スポット</h1><p class="mt-7 max-w-3xl text-base leading-9 text-paper/75">公園から門前町、弥彦山の山頂へ。参拝、空中散歩、温泉街の休憩を組み合わせる、4つの独立した訪問ガイドです。</p></div></section>
+  <section class="section-space bg-paper"><div class="container-shell"><div class="grid gap-9 md:grid-cols-2">{nearbySpots.map(spot=><a href={`/nearby/${spot.slug}/`} class="group block overflow-hidden border border-moss/15 bg-washi/40 no-underline"><img src={spot.image} alt={spot.alt} width="1280" height="850" loading="lazy" class="aspect-[16/9] w-full object-cover transition duration-500 group-hover:scale-[1.02]"/><div class="p-7 sm:p-9"><p class="text-xs font-bold tracking-widest text-gold">{spot.en}</p><h2 class="mt-3 font-serif-jp text-2xl text-moss">{spot.name}</h2><p class="mt-4 text-sm leading-8 text-ink/70">{spot.intro}</p><span class="mt-6 inline-block text-sm font-bold text-moss">歴史・アクセス・見どころを読む →</span></div></a>)}</div><p class="mt-12 text-sm leading-8 text-ink/60"><a href="/parking/" class="underline">周辺駐車場の案内</a>と<a href="/access/" class="underline">公園への交通</a>もあわせてご利用ください。</p></div></section>
+</BaseLayout>

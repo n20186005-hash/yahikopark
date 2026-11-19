@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { nearbySpots, nearbyMap } from '@/data/nearby';
+
+export function getStaticPaths() {
+  return nearbySpots.map(spot => ({ params: { slug: spot.slug }, props: { spot } }));
+}
+
+const { spot } = Astro.props;
+const mapUrl = nearbyMap(spot.mapQuery);
+const schema = {
+  '@context': 'https://schema.org', '@type': 'TouristAttraction', name: spot.name,
+  description: spot.intro, url: `https://yahikopark.com/nearby/${spot.slug}/`,
+  image: `https://yahikopark.com${spot.image}`,
+  address: { '@type': 'PostalAddress', streetAddress: spot.address, addressCountry: 'JP' }, hasMap: mapUrl,
+};
+---
+
+<BaseLayout title={`${spot.name}｜歴史・見どころ・行き方・写真`} description={`${spot.name}の歴史、建築・景観の見どころ、交通、歩き方、写真スポット、よくある質問を紹介。弥彦公園からの周遊に役立つ独立ガイド。`} structuredData={schema}>
+  <section class="relative isolate min-h-[530px] overflow-hidden bg-moss text-paper sm:min-h-[650px]">
+    <img src={spot.image} alt={spot.alt} width="1280" height="850" class="absolute inset-0 h-full w-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-r from-moss/95 via-moss/65 to-moss/25"></div>
+    <div class="container-shell relative flex min-h-[530px] flex-col justify-end pb-14 pt-28 sm:min-h-[650px] sm:pb-20">
+      <p class="text-xs font-bold tracking-[.24em] text-gold">YAHIKO · NEARBY SPOT</p>
+      <h1 class="mt-5 max-w-4xl font-serif-jp text-4xl leading-tight sm:text-6xl">{spot.name}</h1>
+      <p class="mt-4 text-sm tracking-[.1em] text-paper/75">{spot.en}</p>
+      <p class="mt-6 max-w-2xl font-serif-jp text-xl leading-relaxed sm:text-2xl">{spot.tagline}</p>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm">
+        <a href={mapUrl} target="_blank" rel="noopener noreferrer" class="btn-primary !bg-paper !text-moss">{spot.name}をGoogleマップで見る ↗</a>
+        <a href="/nearby/" class="btn-secondary !border-paper/50 !text-paper">周辺スポット一覧</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-paper py-14 sm:py-20"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">DISCOVER</p>
+    <h2 class="mt-4 font-serif-jp text-3xl text-moss">{spot.name}を歩く</h2>
+    <p class="mt-6 max-w-4xl text-base leading-9 text-ink/75">{spot.intro}</p>
+    <h3 class="mt-10 text-xl font-bold text-moss">見どころ・観察のポイント</h3>
+    <div class="mt-5 grid gap-4 sm:grid-cols-3">{spot.highlights.map((item,i)=><div class="border-l-2 border-gold bg-washi/60 p-5"><span class="text-xs text-gold">0{i+1}</span><p class="mt-3 font-serif-jp text-lg text-moss">{item}</p></div>)}</div>
+  </div></section>
+
+  <section class="bg-washi/75 py-14 sm:py-20"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">ABOUT & MANAGEMENT</p>
+    <h2 class="mt-4 font-serif-jp text-3xl text-moss">{spot.name}について</h2>
+    <p class="mt-6 text-base leading-9 text-ink/75">{spot.management}</p>
+    <div class="mt-7 border-l-2 border-gold pl-5"><p class="text-xs font-bold tracking-widest text-gold">管理・運営主体</p><p class="mt-2 text-lg font-bold text-moss">{spot.manager}</p></div>
+  </div></section>
+
+  <section class="section-space bg-paper"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">VISITOR INFORMATION</p><h2 class="mt-4 font-serif-jp text-3xl text-moss">基本情報とアクセス</h2>
+    <dl class="mt-8 divide-y divide-moss/15 border-y border-moss/15 text-sm sm:text-base">
+      {[["スポット名",spot.name],["住所・所在地",spot.address],["管理主体",spot.manager],["開放・営業時間",spot.opening],["料金",spot.price],["交通・アクセス",spot.transit]].map(([label,value])=><div class="grid gap-2 py-5 sm:grid-cols-[10rem_1fr]"><dt class="font-bold text-moss">{label}</dt><dd class="leading-8 text-ink/75">{value}</dd></div>)}
+    </dl>
+    <a class="btn-primary mt-9" href={mapUrl} target="_blank" rel="noopener noreferrer">{spot.name}への道順を調べる ↗</a>
+  </div></section>
+
+  <section class="section-space bg-washi/65"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">HISTORY & CHARACTER</p><h2 class="mt-4 font-serif-jp text-3xl text-moss">歴史・構造・文化を知る</h2>
+    <div class="mt-10 grid gap-7 md:grid-cols-2">
+      {[["01","歴史的背景",spot.history],["02","建築と景観の特徴",spot.design],["03","地域文化とのつながり",spot.culture],["04","現地での楽しみ方",spot.experience]].map(([number,title,body])=><article class="border border-moss/15 bg-paper p-7"><p class="text-xs font-bold tracking-widest text-gold">{number}</p><h3 class="mt-3 font-serif-jp text-xl text-moss">{title}</h3><p class="mt-5 text-sm leading-8 text-ink/72">{body}</p></article>)}
+    </div>
+  </div></section>
+
+  <section class="section-space bg-paper"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">WALKING ROUTE</p><h2 class="mt-4 font-serif-jp text-3xl text-moss">おすすめ散策ルート</h2>
+    <ol class="mt-8 grid gap-4 md:grid-cols-3">{spot.route.map((step,i)=><li class="border-t-2 border-gold bg-washi/60 p-6"><span class="font-serif-jp text-3xl text-gold">{String(i+1).padStart(2,'0')}</span><p class="mt-3 text-sm leading-8 text-ink/75">{step}</p></li>)}</ol>
+    <h3 class="mt-12 font-serif-jp text-2xl text-moss">游覧時の注意点</h3><ul class="mt-5 list-disc space-y-3 pl-6 text-sm leading-8 text-ink/75">{spot.tips.map(tip=><li>{tip}</li>)}</ul>
+  </div></section>
+
+  <section class="section-space bg-washi/75"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">PHOTO SPOTS</p><h2 class="mt-4 font-serif-jp text-3xl text-moss">現地写真と撮影ポイント</h2>
+    <figure class="mt-8 overflow-hidden bg-paper"><img src={spot.image} alt={spot.alt} width="1280" height="850" loading="lazy" class="max-h-[580px] w-full object-cover" /><figcaption class="px-5 py-3 text-xs leading-6 text-ink/60">{spot.name}の実景写真 · 出典：<a href={spot.sourcePhoto} target="_blank" rel="noopener noreferrer" class="underline">{spot.sourceName} ↗</a></figcaption></figure>
+    <div class="mt-7 grid gap-4 md:grid-cols-3">{spot.photos.map((tip,i)=><p class="border-l-2 border-gold pl-4 text-sm leading-8 text-ink/75"><span class="mr-2 font-bold text-gold">{i+1}.</span>{tip}</p>)}</div>
+  </div></section>
+
+  <section class="section-space bg-paper"><div class="container-shell max-w-5xl">
+    <p class="eyebrow">BEFORE YOU GO</p><h2 class="mt-4 font-serif-jp text-3xl text-moss">よくある質問</h2>
+    <div class="mt-8 divide-y divide-moss/15 border-y border-moss/15">{spot.questions.map(([q,a])=><details class="group py-5"><summary class="cursor-pointer font-bold text-moss">{q}</summary><p class="mt-4 text-sm leading-8 text-ink/72">{a}</p></details>)}</div>
+    <h3 class="mt-12 font-serif-jp text-2xl text-moss">交通案内・地図</h3><p class="mt-4 text-sm leading-8 text-ink/75">{spot.address}</p>
+    <a class="btn-primary mt-6" href={mapUrl} target="_blank" rel="noopener noreferrer">Google Mapsで{spot.name}を検索 ↗</a>
+    <p class="mt-10 text-xs leading-7 text-ink/55">参考：<a href={spot.official} target="_blank" rel="noopener noreferrer" class="underline">公式・運営情報</a> ／ <a href={spot.sourcePhoto} target="_blank" rel="noopener noreferrer" class="underline">実景写真の掲載元</a>。営業時間・運行・通行条件は変更されるため、当日の案内を確認してください。</p>
+    <a href="/nearby/" class="mt-7 inline-block text-sm font-bold text-moss underline underline-offset-4">← 周辺スポット一覧へ戻る</a>
+  </div></section>
+</BaseLayout>

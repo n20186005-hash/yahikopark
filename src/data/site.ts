@@ -44,6 +44,7 @@ export const navigation = [
   { label: '訪問ガイド', href: '/guide/' },
   { label: 'アクセス', href: '/access/' },
   { label: '駐車場', href: '/parking/' },
+  { label: '周辺スポット', href: '/nearby/' },
 ] as const;
 
 export const seasons = [

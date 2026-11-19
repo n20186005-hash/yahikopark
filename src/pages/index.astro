@@ -7,6 +7,7 @@ import Reviews from '@/components/Reviews.astro';
 import SourcesSection from '@/components/SourcesSection.astro';
 import Weather from '@/components/Weather.astro';
 import { facts, seasons, site, autumnLightUp2026 } from '@/data/site';
+import { nearbySpots } from '@/data/nearby';
 
 const homeFaqs = [
   [
@@ -116,6 +117,21 @@ const faqSchema = {
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <section class="section-space bg-paper" id="nearby">
+    <div class="container-shell">
+      <SectionTitle eyebrow="EXPLORE NEARBY" title="公園の先に、弥彦をめぐる。" description="彌彦神社から山頂の御神廟、ロープウェイ、温泉街のおもてなし広場まで。周辺の見どころをそれぞれ詳しく紹介します。" />
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {nearbySpots.map(spot=>(
+          <a href={`/nearby/${spot.slug}/`} class="group overflow-hidden border border-moss/15 bg-washi/45 no-underline">
+            <img src={spot.image} alt={spot.alt} width="640" height="480" loading="lazy" class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+            <div class="p-5"><h3 class="font-serif-jp text-lg text-moss">{spot.name}</h3><p class="mt-2 text-xs leading-6 text-ink/65">{spot.tagline}</p><span class="mt-4 inline-block text-xs font-bold text-moss">詳しく見る →</span></div>
+          </a>
+        ))}
+      </div>
+      <a href="/nearby/" class="btn-secondary mt-9">周辺スポット一覧へ →</a>
     </div>
   </section>
 
