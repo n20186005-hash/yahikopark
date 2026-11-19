@@ -13,9 +13,9 @@ export const site = {
   // 評価・口コミ（Google マップ ユーザー評価と同期）
   rating: {
     value: 4.3,
-    count: 2150,
+    count: 2198,
   },
-  ratingSyncedAt: '2026年10月',
+  ratingSyncedAt: '2026年11月',
   // Google マップ 共有リンク（全評価表示用）
   mapsShareUrl: 'https://maps.app.goo.gl/ytxEr3Lwp5Aqp4Zp9',
   // 公式・観光情報（E-E-A-T 向け権威リンク）
