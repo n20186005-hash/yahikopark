@@ -1,0 +1,10 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import SourcesSection from '@/components/SourcesSection.astro';
+---
+
+<BaseLayout title="資料来源・評価の参照元" description="弥彦公園ガイドの情報源、Google マップの評価同期日、公式観光機関へのリンクをまとめた資料ページです。">
+  <PageHero eyebrow="SOURCES" title="情報の出典と更新" lead="評価、口コミ、観光情報の参照元をまとめました。最新の開園状況や交通規制は各公式機関をご確認ください。" image="yahiko-momiji" imageAlt="弥彦公園もみじ谷の紅葉" />
+  <SourcesSection />
+</BaseLayout>

@@ -4,7 +4,12 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="bg-moss text-paper">
-  <div class="container-shell py-7 text-center text-sm text-paper/75">
+  <div class="container-shell flex flex-col items-center justify-between gap-4 py-7 text-sm text-paper/75 sm:flex-row">
     <p>© {year} {site.shortName} · 版權所有</p>
+    <nav aria-label="サイトポリシー" class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs sm:justify-end">
+      <a href="/privacy-policy/" class="no-underline hover:text-paper">プライバシーポリシー</a>
+      <a href="/terms-of-service/" class="no-underline hover:text-paper">利用規約</a>
+      <a href="/cookie-settings/" class="no-underline hover:text-paper">Cookie 設定</a>
+    </nav>
   </div>
 </footer>

@@ -92,13 +92,20 @@ const structuredDataOutput = structuredData
     <title>{fullTitle}</title>
     <script type="application/ld+json" set:html={JSON.stringify(structuredDataOutput)} />
 
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <!-- Analytics only after an explicit Cookie settings opt-in. -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HXM22WWPKP', { anonymize_ip: true });
+      try {
+        if (localStorage.getItem('yahikopark-analytics-consent') === 'accepted') {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-HXM22WWPKP', { anonymize_ip: true });
+          const script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP';
+          document.head.appendChild(script);
+        }
+      } catch (_) { /* Storage disabled: analytics remains off. */ }
     </script>
   </head>
   <body>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+---
+
+<BaseLayout title="プライバシーポリシー" description="弥彦公園ガイドの個人情報、アクセス解析、Cookie、外部リンクについて。">
+  <PageHero eyebrow="PRIVACY POLICY" title="プライバシーポリシー" lead="YahikoPark.comで取り扱う閲覧情報と、利用者が選択できる設定について説明します。" image="yahiko-snow" imageAlt="雪の弥彦公園" />
+  <section class="section-space bg-paper"><article class="container-shell prose-jp max-w-3xl text-base leading-9 text-ink/75">
+    <h2 class="text-2xl text-moss">運営について</h2><p>YahikoPark.comは弥彦村や施設の公式サイトではない、独立した観光情報ガイドです。お問い合わせフォームや会員登録機能は設けていません。</p>
+    <h2 class="mt-10 text-2xl text-moss">アクセス解析とCookie</h2><p>サイトの利用傾向を把握するため、利用者が同意した場合にGoogle Analytics 4（測定ID：G-HXM22WWPKP）を使用します。閲覧ページ、端末環境、概略の地域などが処理される場合があります。<a href="/cookie-settings/">Cookie 設定</a>から同意を変更できます。</p>
+    <h2 class="mt-10 text-2xl text-moss">外部サービス</h2><p>Google マップ、観光機関、写真の参照元へのリンクがあります。リンク先のプライバシー方針は各提供者が定めています。</p>
+    <h2 class="mt-10 text-2xl text-moss">情報の保管と改定</h2><p>Cookieの選択はブラウザ内に保存します。本方針はサービスや運営内容の変更に合わせて更新することがあります。</p>
+    <p class="mt-10 text-sm text-ink/50">最終更新：2026年11月19日</p>
+  </article></section>
+</BaseLayout>

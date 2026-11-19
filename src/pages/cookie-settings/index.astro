@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+---
+
+<BaseLayout title="Cookie 設定" description="弥彦公園ガイドの分析用Cookieへの同意を選択・変更できます。">
+  <PageHero eyebrow="COOKIE SETTINGS" title="Cookie 設定" lead="アクセス解析の許可を選択できます。設定はお使いのブラウザに保存されます。" image="yahiko-snow" imageAlt="弥彦公園の冬景色" />
+  <section class="section-space bg-paper"><div class="container-shell max-w-3xl">
+    <h2 class="text-2xl text-moss">必須の保存情報</h2><p class="mt-4 text-base leading-8 text-ink/75">Cookieの選択を記録するブラウザ保存情報は、設定を維持するために利用します。</p>
+    <h2 class="mt-9 text-2xl text-moss">アクセス解析</h2><p class="mt-4 text-base leading-8 text-ink/75">Google Analytics 4を利用し、ページの閲覧傾向を分析します。同意しない場合は分析タグを読み込みません。</p>
+    <p id="cookie-current" class="mt-6 rounded-lg border border-moss/15 bg-washi/55 p-4 text-sm text-moss" role="status">設定を確認しています…</p>
+    <div class="mt-6 flex flex-wrap gap-3"><button id="cookie-accept" class="btn-primary" type="button">分析を許可する</button><button id="cookie-reject" class="btn-secondary" type="button">分析を許可しない</button></div>
+    <p class="mt-6 text-sm leading-7 text-ink/55">変更後はページを再読み込みします。拒否後も以前に保存された第三者Cookieが残る場合は、ブラウザの設定から削除できます。詳細は<a href="/privacy-policy/" class="underline">プライバシーポリシー</a>をご覧ください。</p>
+  </div></section>
+  <script is:inline>
+    (function () {
+      const key = 'yahikopark-analytics-consent';
+      const status = document.getElementById('cookie-current');
+      const show = () => { const value = localStorage.getItem(key); status.textContent = value === 'accepted' ? '現在の設定：アクセス解析を許可しています。' : value === 'rejected' ? '現在の設定：アクセス解析を許可していません。' : '現在の設定：未選択（アクセス解析を許可していません）。'; };
+      show();
+      document.getElementById('cookie-accept').addEventListener('click', () => { localStorage.setItem(key, 'accepted'); location.reload(); });
+      document.getElementById('cookie-reject').addEventListener('click', () => { localStorage.setItem(key, 'rejected'); location.reload(); });
+    })();
+  </script>
+</BaseLayout>
